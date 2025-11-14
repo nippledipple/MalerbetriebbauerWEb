@@ -75,7 +75,6 @@ const ServicesPage: React.FC = () => {
         'Imprägnierungen',
         'Langzeitschutz-Systeme',
       ],
-      image: '/image.png',
     },
   ];
 

@@ -49,7 +49,7 @@ const AboutPage: React.FC = () => {
             <EditableText
               page="about"
               section="history_paragraph1"
-              defaultContent="Im Jahr 2004 gründete Malermeister Ralf Wolfermann den Malerbetrieb Bauer mit einer klaren Vision: Hochwertige Handwerkskunst mit persönlichem Service zu verbinden. Was mit einem kleinen Team begann, hat sich über die Jahre zu einem anerkannten Meisterbetrieb entwickelt, der für Qualität und Zuverlässigkeit steht."
+              defaultContent="Im Jahr 2004 gründete Ralf Wolfermann den Malerbetrieb Bauer mit einer klaren Vision: Hochwertige Handwerkskunst mit persönlichem Service zu verbinden. Was mit einem kleinen Team begann, hat sich über die Jahre zu einem anerkannten Betrieb entwickelt, der für Qualität und Zuverlässigkeit steht."
               as="p"
               multiline
             />

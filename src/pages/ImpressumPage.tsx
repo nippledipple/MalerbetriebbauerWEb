@@ -50,7 +50,7 @@ const ImpressumPage: React.FC = () => {
                 Berufsbezeichnung und berufsrechtliche Regelungen
               </h2>
               <p className="text-gray-700">
-                Berufsbezeichnung: Malermeister
+                Berufsbezeichnung: Maler
                 <br />
                 Zuständige Kammer: Handwerkskammer für Oberfranken
                 <br />

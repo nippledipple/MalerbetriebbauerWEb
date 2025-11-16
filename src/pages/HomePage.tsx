@@ -31,7 +31,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     {
       icon: Award,
       title: 'Qualität',
-      description: 'Meisterbetrieb mit über 20 Jahren Erfahrung',
+      description: 'Malerbetrieb mit über 20 Jahren Erfahrung',
     },
   ];
 
@@ -98,7 +98,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <EditableText
                 page="home"
                 section="welcome_paragraph1"
-                defaultContent="Seit 2004 ist der Malerbetrieb Bauer Ihr kompetenter Partner für hochwertige Malerarbeiten in Schönwald und Umgebung. Was als kleiner Handwerksbetrieb begann, hat sich zu einem etablierten Meisterbetrieb mit einem Team erfahrener Fachkräfte entwickelt."
+                defaultContent="Seit 2004 ist der Malerbetrieb Bauer Ihr kompetenter Partner für hochwertige Malerarbeiten in Schönwald und Umgebung. Was als kleiner Handwerksbetrieb begann, hat sich zu einem etablierten Betrieb mit einem Team erfahrener Fachkräfte entwickelt."
                 as="p"
                 multiline
               />

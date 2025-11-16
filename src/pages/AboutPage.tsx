@@ -6,7 +6,7 @@ const AboutPage: React.FC = () => {
   const team = [
     {
       name: 'Ralf Wolfermann',
-      role: 'Gründer & Malermeister',
+      role: 'Gründer & Maler',
       description:
         'Mit über 30 Jahren Erfahrung im Malerhandwerk leitet Ralf den Betrieb mit Leidenschaft und Expertise.',
     },

@@ -16,6 +16,8 @@ const ImpressumPage: React.FC = () => {
               <p className="text-gray-700">
                 <strong>Malerbetrieb Bauer</strong>
                 <br />
+                Rechtsform: Einzelunternehmen
+                <br />
                 Inh. Ralf Wolfermann
                 <br />
                 Neue Str. 19
@@ -46,21 +48,48 @@ const ImpressumPage: React.FC = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-[#585858] mb-4">
-                Berufsbezeichnung und berufsrechtliche Regelungen
-              </h2>
+              <h2 className="text-2xl font-bold text-[#585858] mb-4">Umsatzsteuer-ID</h2>
               <p className="text-gray-700">
-                Berufsbezeichnung: Maler
-                <br />
-                Zuständige Kammer: Handwerkskammer für Oberfranken
-                <br />
-                Verliehen in: Deutschland
+                Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-[#585858] mb-4">
-                Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+                Berufsbezeichnung und berufsrechtliche Regelungen
+              </h2>
+              <p className="text-gray-700">
+                Berufsbezeichnung: Maler und Lackierer (Deutschland)
+                <br />
+                Zuständige Kammer: Handwerkskammer für Oberfranken
+                <br />
+                Kerschensteinerstraße 6, 95448 Bayreuth
+                <br />
+                <a
+                  href="https://www.hwk-oberfranken.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#ffd900] hover:underline"
+                >
+                  www.hwk-oberfranken.de
+                </a>
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-[#585858] mb-4">Aufsichtsbehörde</h2>
+              <p className="text-gray-700">
+                Handwerkskammer für Oberfranken
+                <br />
+                Kerschensteinerstraße 6
+                <br />
+                95448 Bayreuth
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-[#585858] mb-4">
+                Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
               </h2>
               <p className="text-gray-700">
                 Ralf Wolfermann

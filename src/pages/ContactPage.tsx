@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { supabase } from '../lib/supabase';
 import { useCookies } from '../contexts/CookieContext';
 import { EditableText } from '../components/EditableText';
@@ -57,21 +56,29 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       if (error) throw error;
 
       try {
-        await emailjs.send(
-          'service_lflc6zj',
-          'template_k4wm4zp',
+        const emailResponse = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`,
           {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone || 'Nicht angegeben',
-            subject: formData.subject || 'Keine Betreffzeile',
-            message: formData.message,
-            to_email: 'malerbauer.mer@gmail.com',
-          },
-          'LXU0lLYfvojksMu5v'
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              subject: formData.subject,
+              message: formData.message,
+            }),
+          }
         );
+
+        if (!emailResponse.ok) {
+          console.error('Email sending failed:', await emailResponse.text());
+        }
       } catch (emailError) {
-        console.error('EmailJS error (non-critical):', emailError);
+        console.error('Email error (non-critical):', emailError);
       }
 
       if (consent.statistics) {

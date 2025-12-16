@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paintbrush, Shield, Users, Award, Phone } from 'lucide-react';
 import { EditableText } from '../components/EditableText';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+import { PartnerSlider } from '../components/PartnerSlider';
+import { supabase } from '../lib/supabase';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
 }
 
+interface Partner {
+  id: string;
+  name: string;
+  logo_url: string;
+}
+
 const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      const { data } = await supabase
+        .from('partners')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+
+      if (data) {
+        setPartners(data);
+      }
+    };
+
+    fetchPartners();
+  }, []);
+
   const scrollToContact = () => {
     onNavigate('contact');
   };
@@ -192,6 +218,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </section>
+
+      {partners.length > 0 && (
+        <PartnerSlider
+          partners={partners}
+          onClickSlider={() => onNavigate('partners')}
+        />
+      )}
 
       <section className="py-16 bg-[#585858] text-white">
         <div className="container mx-auto px-4 text-center">

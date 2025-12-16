@@ -1,15 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { EditableText } from './EditableText';
+import { PartnerSlider } from './PartnerSlider';
+import { supabase } from '../lib/supabase';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
   onOpenCookieSettings: () => void;
 }
 
+interface Partner {
+  id: string;
+  name: string;
+  logo_url: string;
+}
+
 const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => {
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    loadPartners();
+  }, []);
+
+  const loadPartners = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('partners')
+        .select('id, name, logo_url')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true })
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      setPartners(data || []);
+    } catch (error) {
+      console.error('Error loading partners:', error);
+    }
+  };
+
   return (
-    <footer className="bg-[#585858] text-white mt-16">
+    <>
+      <PartnerSlider
+        partners={partners}
+        onClickSlider={() => onNavigate('partners')}
+      />
+      <footer className="bg-[#585858] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -120,6 +155,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => 
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

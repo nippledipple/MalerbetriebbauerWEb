@@ -12,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import AdminDashboard from './pages/AdminDashboard';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
+import PartnersPage from './pages/PartnersPage';
 import { useTracking } from './hooks/useTracking';
 import { useAuth } from './contexts/AuthContext';
 import { localDb } from './lib/localDb';
@@ -23,7 +24,8 @@ type PageType =
   | 'contact'
   | 'admin'
   | 'impressum'
-  | 'datenschutz';
+  | 'datenschutz'
+  | 'partners';
 
 const AppContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
@@ -68,6 +70,8 @@ const AppContent: React.FC = () => {
         return <ImpressumPage />;
       case 'datenschutz':
         return <DatenschutzPage />;
+      case 'partners':
+        return <PartnersPage onNavigate={handleNavigate} />;
       default:
         return <HomePage onNavigate={handleNavigate} />;
     }

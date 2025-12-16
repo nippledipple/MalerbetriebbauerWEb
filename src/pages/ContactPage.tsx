@@ -123,7 +123,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
           <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858] relative overflow-hidden">
             <img
-              src="/e48083a5-33c2-4e82-9bfb-10683f40-removebg-preview.png"
+              src="/e48083a5-33c2-4e82-9bfb-10683f40cf8d-removebg-preview.png"
               alt="Malerbetrieb Bauer Logo"
               className="absolute right-8 top-1/2 -translate-y-1/2 h-32 w-auto object-contain opacity-30"
             />

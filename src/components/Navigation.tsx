@@ -39,7 +39,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
               onClick={() => onNavigate('home')}
             >
               <img
-                src="/e48083a5-33c2-4e82-9bfb-10683f40-removebg-preview.png"
+                src="/e48083a5-33c2-4e82-9bfb-10683f40cf8d-removebg-preview.png"
                 alt="Malerbetrieb Bauer Logo"
                 className="h-16 w-auto object-contain"
               />

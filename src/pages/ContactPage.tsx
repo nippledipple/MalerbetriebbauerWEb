@@ -58,8 +58,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
       try {
         await emailjs.send(
-          'service_lflc6zj',
-          'template_k4wm4zp',
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           {
             name: formData.name,
             email: formData.email,
@@ -67,7 +67,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             subject: formData.subject || 'Keine Betreffzeile',
             message: formData.message,
           },
-          'LXU0lLYfvojksMu5v'
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         );
       } catch (emailError) {
         console.error('EmailJS error (non-critical):', emailError);

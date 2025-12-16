@@ -73,7 +73,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="hidden lg:flex justify-end items-center">
               <div className="relative w-[500px] h-[400px] flex items-center justify-center">
                 <img
-                  src="/e48083a5-33c2-4e82-9bfb-10683f40-removebg-preview.png"
+                  src="/e48083a5-33c2-4e82-9bfb-10683f40cf8d.jpeg"
                   alt="Malerbetrieb Bauer Logo"
                   className="w-4/5 h-auto object-contain"
                 />

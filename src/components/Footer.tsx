@@ -9,7 +9,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => {
   return (
-    <footer className="bg-[#585858] text-white">
+    <footer className="bg-gradient-to-b from-[#1a1f3a] to-[#0a0e27] text-white border-t-2 border-[#ffd700]">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>

@@ -19,7 +19,7 @@ const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="py-16 relative z-10">
+    <div className="py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <EditableText
@@ -27,10 +27,10 @@ const AboutPage: React.FC = () => {
             section="title"
             defaultContent="Über uns"
             as="h1"
-            className="text-4xl md:text-5xl font-bold text-[#ffd700] mb-8 text-center"
+            className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center"
           />
 
-          <div className="festive-gradient rounded-lg p-8 mb-12 text-[#1a1f3a] border-2 border-[#ffd700] shadow-lg shadow-[#ffd700]/50">
+          <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858]">
             <EditableText
               page="about"
               section="tagline"
@@ -41,9 +41,9 @@ const AboutPage: React.FC = () => {
             />
           </div>
 
-          <div className="prose prose-lg max-w-none text-white space-y-6 mb-16">
-            <h2 className="text-3xl font-bold text-[#ffd700] flex items-center space-x-3">
-              <Award className="text-[#ffd700]" size={36} />
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6 mb-16">
+            <h2 className="text-3xl font-bold text-[#585858] flex items-center space-x-3">
+              <Award className="text-[#ffd900]" size={36} />
               <span>Unsere Geschichte</span>
             </h2>
             <EditableText

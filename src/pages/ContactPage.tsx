@@ -110,7 +110,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="py-16">
+    <div className="py-16 relative z-10">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <EditableText
@@ -118,10 +118,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             section="title"
             defaultContent="Kontakt"
             as="h1"
-            className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center"
+            className="text-4xl md:text-5xl font-bold text-[#ffd700] mb-8 text-center"
           />
 
-          <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858] relative overflow-hidden">
+          <div className="festive-gradient rounded-lg p-8 mb-12 text-[#1a1f3a] relative overflow-hidden border-2 border-[#ffd700] shadow-lg shadow-[#ffd700]/50">
             <img
               src="/e48083a5-33c2-4e82-9bfb-10683f40cf8d-removebg-preview.png"
               alt="Malerbetrieb Bauer Logo"
@@ -138,31 +138,31 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             <div>
-              <h2 className="text-2xl font-bold text-[#585858] mb-6">
+              <h2 className="text-2xl font-bold text-[#ffd700] mb-6">
                 Kontaktinformationen
               </h2>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="text-[#585858]" size={24} />
+                  <div className="festive-gradient w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ffd700]/50">
+                    <MapPin className="text-[#1a1f3a]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Adresse</h3>
-                    <p className="text-gray-600">Neue Str. 19</p>
-                    <p className="text-gray-600">95173 Schönwald</p>
+                    <h3 className="font-bold text-[#ffd700] mb-1">Adresse</h3>
+                    <p className="text-white/80">Neue Str. 19</p>
+                    <p className="text-white/80">95173 Schönwald</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="text-[#585858]" size={24} />
+                  <div className="festive-gradient w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ffd700]/50">
+                    <Phone className="text-[#1a1f3a]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Telefon</h3>
+                    <h3 className="font-bold text-[#ffd700] mb-1">Telefon</h3>
                     <a
                       href="tel:+491718852058"
-                      className="text-gray-600 hover:text-[#ffd900] transition-colors"
+                      className="text-white/80 hover:text-[#ffd700] transition-colors"
                     >
                       +49 171 8852058
                     </a>
@@ -170,14 +170,14 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="text-[#585858]" size={24} />
+                  <div className="festive-gradient w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ffd700]/50">
+                    <Mail className="text-[#1a1f3a]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">E-Mail</h3>
+                    <h3 className="font-bold text-[#ffd700] mb-1">E-Mail</h3>
                     <a
                       href="mailto:malerbauer1468@gmx.de"
-                      className="text-gray-600 hover:text-[#ffd900] transition-colors"
+                      className="text-white/80 hover:text-[#ffd700] transition-colors"
                     >
                       malerbauer1468@gmx.de
                     </a>
@@ -185,20 +185,20 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="text-[#585858]" size={24} />
+                  <div className="festive-gradient w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ffd700]/50">
+                    <Clock className="text-[#1a1f3a]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Öffnungszeiten</h3>
-                    <p className="text-gray-600">Montag - Freitag: 08:00 - 17:00 Uhr</p>
-                    <p className="text-gray-600">Samstag: Nach Vereinbarung</p>
+                    <h3 className="font-bold text-[#ffd700] mb-1">Öffnungszeiten</h3>
+                    <p className="text-white/80">Montag - Freitag: 08:00 - 17:00 Uhr</p>
+                    <p className="text-white/80">Samstag: Nach Vereinbarung</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-[#585858] mb-6">
+              <h2 className="text-2xl font-bold text-[#ffd700] mb-6">
                 Kontaktformular
               </h2>
 
@@ -228,7 +228,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#ffd700] mb-1"
                   >
                     Name *
                   </label>
@@ -238,7 +238,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-[#1a1f3a] border-2 border-[#ffd700]/30 text-white rounded-lg focus:ring-2 focus:ring-[#ffd700] focus:border-[#ffd700]"
                     required
                     disabled={status === 'loading'}
                   />
@@ -247,7 +247,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#ffd700] mb-1"
                   >
                     E-Mail *
                   </label>
@@ -257,7 +257,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-[#1a1f3a] border-2 border-[#ffd700]/30 text-white rounded-lg focus:ring-2 focus:ring-[#ffd700] focus:border-[#ffd700]"
                     required
                     disabled={status === 'loading'}
                   />
@@ -266,7 +266,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#ffd700] mb-1"
                   >
                     Telefonnummer (optional)
                   </label>
@@ -276,7 +276,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-[#1a1f3a] border-2 border-[#ffd700]/30 text-white rounded-lg focus:ring-2 focus:ring-[#ffd700] focus:border-[#ffd700]"
                     disabled={status === 'loading'}
                   />
                 </div>
@@ -284,7 +284,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#ffd700] mb-1"
                   >
                     Betreff (optional)
                   </label>
@@ -294,7 +294,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-[#1a1f3a] border-2 border-[#ffd700]/30 text-white rounded-lg focus:ring-2 focus:ring-[#ffd700] focus:border-[#ffd700]"
                     disabled={status === 'loading'}
                   />
                 </div>
@@ -302,7 +302,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#ffd700] mb-1"
                   >
                     Nachricht *
                   </label>
@@ -312,7 +312,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent resize-none"
+                    className="w-full px-4 py-2 bg-[#1a1f3a] border-2 border-[#ffd700]/30 text-white rounded-lg focus:ring-2 focus:ring-[#ffd700] focus:border-[#ffd700] resize-none"
                     required
                     disabled={status === 'loading'}
                   />
@@ -329,12 +329,12 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     required
                     disabled={status === 'loading'}
                   />
-                  <label htmlFor="consent" className="text-sm text-gray-600">
+                  <label htmlFor="consent" className="text-sm text-white/80">
                     Ich stimme der Verarbeitung meiner Daten gemäß{' '}
                     <button
                       type="button"
                       onClick={() => onNavigate('datenschutz')}
-                      className="text-[#ffd900] hover:underline"
+                      className="text-[#ffd700] hover:underline"
                     >
                       Datenschutzbestimmungen
                     </button>{' '}
@@ -345,7 +345,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-[#ffd900] text-[#585858] font-bold py-3 rounded-lg hover:bg-[#e6c200] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full festive-gradient text-[#1a1f3a] font-bold py-3 rounded-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg shadow-[#ffd700]/50"
                 >
                   <Send size={20} />
                   <span>{status === 'loading' ? 'Wird gesendet...' : 'Nachricht senden'}</span>

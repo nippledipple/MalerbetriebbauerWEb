@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { supabase } from '../lib/supabase';
 import { useCookies } from '../contexts/CookieContext';
 import { EditableText } from '../components/EditableText';
@@ -56,23 +55,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
         }]);
 
       if (error) throw error;
-
-      try {
-        await emailjs.send(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-          {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone || 'Nicht angegeben',
-            subject: formData.subject || 'Keine Betreffzeile',
-            message: formData.message,
-          },
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-        );
-      } catch (emailError) {
-        console.error('EmailJS error (non-critical):', emailError);
-      }
 
       if (consent.statistics) {
         const sessionId = localStorage.getItem('sessionId') || crypto.randomUUID();

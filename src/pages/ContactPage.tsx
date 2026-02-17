@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import { supabase } from '../lib/supabase';
 import { useCookies } from '../contexts/CookieContext';
 import { EditableText } from '../components/EditableText';
+import { logError } from '../lib/errorLogger';
 
 interface ContactPageProps {
   onNavigate: (page: string) => void;
@@ -102,6 +103,21 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       }, 5000);
     } catch (error: any) {
       console.error('Error submitting form:', error);
+
+      await logError({
+        errorType: 'contact_form',
+        errorMessage: error.message || 'Unbekannter Fehler beim Kontaktformular',
+        errorStack: error.stack,
+        formData: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          messageLength: formData.message.length,
+        },
+        pageUrl: '/contact',
+      });
+
       setErrorMessage(
         'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.'
       );

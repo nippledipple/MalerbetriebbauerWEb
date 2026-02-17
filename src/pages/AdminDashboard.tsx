@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, Mail, Settings, MessageCircle } from 'lucide-react';
+import { BarChart3, Mail, Settings, MessageCircle, AlertCircle } from 'lucide-react';
 import { supabase, type ContactRequest } from '../lib/supabase';
 import StatisticsPanel from '../components/admin/StatisticsPanel';
 import InboxPanel from '../components/admin/InboxPanel';
 import SettingsPanel from '../components/admin/SettingsPanel';
 import KIPostfachPanel from '../components/admin/KIPostfachPanel';
+import ErrorLogsPanel from '../components/admin/ErrorLogsPanel';
 
 const AdminDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'statistics' | 'inbox' | 'ki-inbox' | 'settings'>(
+  const [activeTab, setActiveTab] = useState<'statistics' | 'inbox' | 'ki-inbox' | 'errors' | 'settings'>(
     'statistics'
   );
   const [contactRequests, setContactRequests] = useState<ContactRequest[]>([]);
@@ -37,6 +38,7 @@ const AdminDashboard: React.FC = () => {
     { id: 'statistics' as const, label: 'Statistiken', icon: BarChart3 },
     { id: 'inbox' as const, label: 'Postfach', icon: Mail },
     { id: 'ki-inbox' as const, label: 'KI-Postfach', icon: MessageCircle },
+    { id: 'errors' as const, label: 'Fehlerprotokoll', icon: AlertCircle },
     { id: 'settings' as const, label: 'Einstellungen', icon: Settings },
   ];
 
@@ -83,6 +85,7 @@ const AdminDashboard: React.FC = () => {
                 />
               )}
               {activeTab === 'ki-inbox' && <KIPostfachPanel />}
+              {activeTab === 'errors' && <ErrorLogsPanel />}
               {activeTab === 'settings' && <SettingsPanel />}
             </div>
           </div>

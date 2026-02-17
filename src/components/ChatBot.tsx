@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Paintbrush } from 'lucide-react';
 import { findBestMatch, quickButtons } from '../lib/chatKnowledge';
 import { supabase } from '../lib/supabase';
+import { logError } from '../lib/errorLogger';
 
 interface Message {
   id: string;
@@ -145,7 +146,7 @@ export default function ChatBot() {
   const saveOfferToSupabase = async (data: OfferData) => {
     try {
       const isEmail = data.contact?.includes('@');
-      await supabase.from('ai_inquiries').insert({
+      const { error } = await supabase.from('ai_inquiries').insert({
         source: 'angebot',
         name: data.name || 'Unbekannt',
         phone: isEmail ? null : data.contact,
@@ -157,8 +158,27 @@ export default function ChatBot() {
         message: data.photo ? `Foto/Link: ${data.photo}` : null,
         status: 'Neu'
       });
-    } catch (error) {
+
+      if (error) throw error;
+    } catch (error: any) {
       console.error('Error saving inquiry:', error);
+
+      await logError({
+        errorType: 'chat_bot_offer',
+        errorMessage: error.message || 'Fehler beim Speichern der Angebotsanfrage',
+        errorStack: error.stack,
+        formData: {
+          workType: data.workType,
+          street: data.street,
+          zip: data.zip,
+          city: data.city,
+          name: data.name,
+          contactType: data.contact?.includes('@') ? 'email' : 'phone',
+        },
+        pageUrl: '/chatbot-offer',
+      });
+
+      addBotMessage('Es gab einen Fehler beim Speichern deiner Anfrage. Bitte versuche es später erneut oder kontaktiere uns direkt.');
     }
   };
 

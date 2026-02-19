@@ -128,7 +128,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 >
                   <div className="flex items-center space-x-4">
                     <div className="bg-white/15 backdrop-blur-sm w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="text-white" size={28} strokeWidth={2} />
+                      <img
+                        src="/whatsapp_logo_2-660x550.webp"
+                        alt="WhatsApp"
+                        className="w-7 h-7 object-contain"
+                      />
                     </div>
                     <div className="text-left">
                       <div className="text-lg font-bold leading-tight">WhatsApp Anfrage senden</div>

@@ -131,7 +131,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                       <img
                         src="/whatsapp_logo_2-660x550.webp"
                         alt="WhatsApp"
-                        className="w-7 h-7 object-contain"
+                        className="w-10 h-10 object-contain"
                       />
                     </div>
                     <div className="text-left">

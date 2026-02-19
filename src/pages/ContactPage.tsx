@@ -233,7 +233,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                       <img
                         src="/9DE6C232-1DE7-4339-87DF-CEA4B3CCF391.PNG"
                         alt="E-Mail"
-                        className="w-8 h-8 object-contain"
+                        className="w-16 h-16 object-contain"
                       />
                     </div>
                     <div className="text-left">

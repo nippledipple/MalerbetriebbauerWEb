@@ -7,10 +7,6 @@ interface ContactPageProps {
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
-  const handleCheck24Click = () => {
-    window.open('https://www.check24.de/profis/maler-bauer-schoenwald/', '_blank', 'noopener,noreferrer');
-  };
-
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
   };
@@ -116,24 +112,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
               </p>
 
               <div className="space-y-4">
-                <button
-                  onClick={handleCheck24Click}
-                  className="group w-full bg-[#0070f3] hover:bg-[#0051cc] text-white font-bold py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-between"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-xl">
-                      <ExternalLink className="text-white" size={28} />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xl font-bold">Angebot über CHECK24 anfragen</div>
-                      <div className="text-sm text-white/80 mt-1">
-                        Du kannst dort direkt eine Angebotsanfrage stellen.
-                      </div>
-                    </div>
-                  </div>
-                  <ExternalLink className="text-white opacity-50 group-hover:opacity-100 transition-opacity" size={24} />
-                </button>
-
                 <button
                   onClick={handleWhatsAppClick}
                   className="group w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-5 px-8 rounded-[14px] transition-all duration-300 ease-in-out transform hover:scale-[1.03] shadow-lg hover:shadow-2xl flex items-center justify-between"

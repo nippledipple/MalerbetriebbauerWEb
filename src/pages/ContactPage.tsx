@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, ExternalLink, MessageCircle } from 'lucide-react';
 import { EditableText } from '../components/EditableText';
 
@@ -6,18 +6,90 @@ interface ContactPageProps {
   onNavigate: (page: string) => void;
 }
 
+interface RedirectOverlayProps {
+  type: 'whatsapp' | 'email';
+  onClose: () => void;
+}
+
+const RedirectOverlay: React.FC<RedirectOverlayProps> = ({ type, onClose }) => {
+  const isWhatsApp = type === 'whatsapp';
+
+  return (
+    <div className="redirect-overlay-backdrop" onClick={onClose}>
+      <div className="redirect-overlay-card" onClick={(e) => e.stopPropagation()}>
+        <div className="redirect-icon-container">
+          {isWhatsApp ? (
+            <div className="redirect-icon whatsapp-icon">
+              <MessageCircle size={40} strokeWidth={2} />
+            </div>
+          ) : (
+            <div className="redirect-icon email-icon">
+              <Mail size={40} strokeWidth={2} />
+            </div>
+          )}
+        </div>
+
+        <h3 className="redirect-headline">
+          {isWhatsApp ? 'Weiterleitung zu WhatsApp…' : 'E-Mail wird geöffnet…'}
+        </h3>
+
+        <p className="redirect-subtext">
+          {isWhatsApp
+            ? 'Ihr Malerbetrieb Bauer öffnet WhatsApp für Ihre Anfrage.'
+            : 'Ihr Malerbetrieb Bauer öffnet Ihr E-Mail-Programm.'}
+        </p>
+
+        <div className="redirect-spinner">
+          <div className="spinner"></div>
+        </div>
+
+        <button
+          className="redirect-fallback-button"
+          onClick={() => {
+            if (isWhatsApp) {
+              window.open('https://wa.me/491746149335?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
+            } else {
+              window.location.href = 'mailto:malerbauer.mer@gmail.com?subject=Anfrage%20Malerbetrieb%20Bauer';
+            }
+            onClose();
+          }}
+        >
+          Falls nichts passiert, hier klicken
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
+  const [showRedirect, setShowRedirect] = useState<'whatsapp' | 'email' | null>(null);
+
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
+    setShowRedirect('whatsapp');
+    setTimeout(() => {
+      window.open('https://wa.me/491746149335?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
+      setShowRedirect(null);
+    }, 1300);
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:malerbauer1468@gmx.de';
+    setShowRedirect('email');
+    setTimeout(() => {
+      window.location.href = 'mailto:malerbauer.mer@gmail.com?subject=Anfrage%20Malerbetrieb%20Bauer';
+      setShowRedirect(null);
+    }, 1300);
   };
 
   return (
-    <div className="py-16">
-      <div className="container mx-auto px-4">
+    <>
+      {showRedirect && (
+        <RedirectOverlay
+          type={showRedirect}
+          onClose={() => setShowRedirect(null)}
+        />
+      )}
+      <div className="py-16">
+        <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <EditableText
             page="contact"
@@ -193,7 +265,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

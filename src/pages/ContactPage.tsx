@@ -111,38 +111,69 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 Du möchtest ein Angebot anfragen oder hast Fragen? Wähle einfach den passenden Kontaktweg:
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-4 max-w-[520px]">
                 <button
                   onClick={handleWhatsAppClick}
-                  className="group w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-5 px-8 rounded-[14px] transition-all duration-300 ease-in-out transform hover:scale-[1.03] shadow-lg hover:shadow-2xl flex items-center justify-between"
+                  className="group w-full bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] flex items-center justify-between"
+                  style={{
+                    padding: '20px 24px',
+                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                  }}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-xl">
-                      <MessageCircle className="text-white" size={26} />
+                    <div className="bg-white/15 backdrop-blur-sm w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+                      <MessageCircle className="text-white" size={28} strokeWidth={2} />
                     </div>
                     <div className="text-left">
-                      <div className="text-lg font-bold">WhatsApp Anfrage senden</div>
-                      <div className="text-sm text-white/80 mt-0.5">
-                        Der Chat öffnet sich mit einer fertigen Angebotsanfrage.
+                      <div className="text-lg font-bold leading-tight">WhatsApp Anfrage senden</div>
+                      <div className="text-sm text-white/85 mt-1 font-normal">
+                        Schnellste Antwort - Chat öffnet sich sofort
                       </div>
                     </div>
                   </div>
-                  <ExternalLink className="text-white opacity-50 group-hover:opacity-100 transition-opacity" size={20} />
+                  <div className="flex-shrink-0 ml-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white opacity-90">
+                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </button>
 
                 <button
                   onClick={handleEmailClick}
-                  className="group w-full bg-white hover:bg-gray-50 text-[#585858] font-bold py-5 px-8 rounded-2xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-between"
+                  className="group w-full bg-white hover:bg-gray-50 text-gray-800 rounded-2xl border border-gray-200 transition-all duration-300 ease-in-out transform hover:scale-[1.01] flex items-center justify-between"
+                  style={{
+                    padding: '20px 24px',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.08)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
+                  }}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="bg-gray-100 p-3 rounded-xl">
-                      <Mail className="text-[#585858]" size={26} />
+                    <div className="bg-blue-50 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Mail className="text-blue-600" size={26} strokeWidth={2} />
                     </div>
                     <div className="text-left">
-                      <div className="text-lg font-bold">E-Mail schreiben</div>
+                      <div className="text-lg font-bold leading-tight text-gray-900">E-Mail schreiben</div>
+                      <div className="text-sm text-gray-500 mt-1 font-normal">
+                        Antwort innerhalb von 24 Stunden
+                      </div>
                     </div>
                   </div>
-                  <Mail className="text-gray-400 group-hover:text-[#585858] transition-colors" size={20} />
+                  <div className="flex-shrink-0 ml-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-400 group-hover:text-gray-600 transition-colors">
+                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </button>
               </div>
             </div>

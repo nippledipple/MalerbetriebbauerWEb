@@ -1,110 +1,22 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import { useCookies } from '../contexts/CookieContext';
+import React from 'react';
+import { MapPin, Phone, Mail, Clock, ExternalLink, MessageCircle } from 'lucide-react';
 import { EditableText } from '../components/EditableText';
-import { logError } from '../lib/errorLogger';
 
 interface ContactPageProps {
   onNavigate: (page: string) => void;
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-    consent: false,
-  });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-  const { consent } = useCookies();
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    }));
+  const handleCheck24Click = () => {
+    window.open('https://www.check24.de/profis/maler-bauer-schoenwald/', '_blank', 'noopener,noreferrer');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/491718852058', '_blank', 'noopener,noreferrer');
+  };
 
-    if (!formData.consent) {
-      setErrorMessage('Bitte stimmen Sie der Datenverarbeitung zu.');
-      setStatus('error');
-      return;
-    }
-
-    try {
-      const { error } = await supabase
-        .from('contact_requests')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || null,
-          message: `${formData.subject ? `Betreff: ${formData.subject}\n\n` : ''}${formData.message}`,
-          status: 'open',
-        }]);
-
-      if (error) throw error;
-
-      if (consent.statistics) {
-        const sessionId = localStorage.getItem('sessionId') || crypto.randomUUID();
-        localStorage.setItem('sessionId', sessionId);
-
-        await supabase
-          .from('visitor_stats')
-          .insert([{
-            page_url: '/contact-form-submit',
-            referrer: document.referrer,
-            user_agent: navigator.userAgent,
-            session_id: sessionId,
-          }]);
-      }
-
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        consent: false,
-      });
-
-      setTimeout(() => {
-        setStatus('idle');
-      }, 5000);
-    } catch (error: any) {
-      console.error('Error submitting form:', error);
-
-      await logError({
-        errorType: 'contact_form',
-        errorMessage: error.message || 'Unbekannter Fehler beim Kontaktformular',
-        errorStack: error.stack,
-        formData: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          messageLength: formData.message.length,
-        },
-        pageUrl: '/contact',
-      });
-
-      setErrorMessage(
-        'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.'
-      );
-      setStatus('error');
-    }
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:malerbauer1468@gmx.de';
   };
 
   return (
@@ -196,159 +108,62 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-[#585858] mb-6">
-                Kontaktformular
+              <h2 className="text-2xl font-bold text-[#585858] mb-4">
+                Kontakt aufnehmen
               </h2>
+              <p className="text-gray-600 mb-8">
+                Du möchtest ein Angebot anfragen oder hast Fragen? Wähle einfach den passenden Kontaktweg:
+              </p>
 
-              {status === 'success' && (
-                <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg flex items-start space-x-3">
-                  <CheckCircle className="text-green-600 flex-shrink-0" size={24} />
-                  <div>
-                    <p className="text-green-800 font-semibold">Nachricht gesendet!</p>
-                    <p className="text-green-700 text-sm">
-                      Vielen Dank für Ihre Anfrage. Wir melden uns zeitnah bei Ihnen.
-                    </p>
+              <div className="space-y-4">
+                <button
+                  onClick={handleCheck24Click}
+                  className="group w-full bg-[#0070f3] hover:bg-[#0051cc] text-white font-bold py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-between"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-white/20 p-3 rounded-xl">
+                      <ExternalLink className="text-white" size={28} />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xl font-bold">Angebot über CHECK24 anfragen</div>
+                      <div className="text-sm text-white/80 mt-1">
+                        Du kannst dort direkt eine Angebotsanfrage stellen.
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
-
-              {status === 'error' && (
-                <div className="mb-6 p-4 bg-red-100 border border-red-300 rounded-lg flex items-start space-x-3">
-                  <AlertCircle className="text-red-600 flex-shrink-0" size={24} />
-                  <div>
-                    <p className="text-red-800 font-semibold">Fehler</p>
-                    <p className="text-red-700 text-sm">{errorMessage}</p>
-                  </div>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
-                    required
-                    disabled={status === 'loading'}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    E-Mail *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
-                    required
-                    disabled={status === 'loading'}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Telefonnummer (optional)
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
-                    disabled={status === 'loading'}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Betreff (optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent"
-                    disabled={status === 'loading'}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Nachricht *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd900] focus:border-transparent resize-none"
-                    required
-                    disabled={status === 'loading'}
-                  />
-                </div>
-
-                <div className="flex items-start space-x-2">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    name="consent"
-                    checked={formData.consent}
-                    onChange={handleChange}
-                    className="mt-1"
-                    required
-                    disabled={status === 'loading'}
-                  />
-                  <label htmlFor="consent" className="text-sm text-gray-600">
-                    Ich stimme der Verarbeitung meiner Daten gemäß{' '}
-                    <button
-                      type="button"
-                      onClick={() => onNavigate('datenschutz')}
-                      className="text-[#ffd900] hover:underline"
-                    >
-                      Datenschutzbestimmungen
-                    </button>{' '}
-                    zu. *
-                  </label>
-                </div>
+                  <ExternalLink className="text-white opacity-50 group-hover:opacity-100 transition-opacity" size={24} />
+                </button>
 
                 <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full bg-[#ffd900] text-[#585858] font-bold py-3 rounded-lg hover:bg-[#e6c200] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  onClick={handleWhatsAppClick}
+                  className="group w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-5 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-between"
                 >
-                  <Send size={20} />
-                  <span>{status === 'loading' ? 'Wird gesendet...' : 'Nachricht senden'}</span>
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-white/20 p-3 rounded-xl">
+                      <MessageCircle className="text-white" size={26} />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-lg font-bold">WhatsApp Nachricht senden</div>
+                    </div>
+                  </div>
+                  <ExternalLink className="text-white opacity-50 group-hover:opacity-100 transition-opacity" size={20} />
                 </button>
-              </form>
+
+                <button
+                  onClick={handleEmailClick}
+                  className="group w-full bg-white hover:bg-gray-50 text-[#585858] font-bold py-5 px-8 rounded-2xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-between"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-gray-100 p-3 rounded-xl">
+                      <Mail className="text-[#585858]" size={26} />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-lg font-bold">E-Mail schreiben</div>
+                    </div>
+                  </div>
+                  <Mail className="text-gray-400 group-hover:text-[#585858] transition-colors" size={20} />
+                </button>
+              </div>
             </div>
           </div>
 

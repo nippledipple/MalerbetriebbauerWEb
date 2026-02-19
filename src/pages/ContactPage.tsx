@@ -12,7 +12,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/491746149335?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
   };
 
   const handleEmailClick = () => {

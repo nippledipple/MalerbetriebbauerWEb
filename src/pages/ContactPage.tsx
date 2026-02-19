@@ -12,7 +12,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/491718852058', '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/491746149335?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
   };
 
   const handleEmailClick = () => {
@@ -136,14 +136,17 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
                 <button
                   onClick={handleWhatsAppClick}
-                  className="group w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-5 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-between"
+                  className="group w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-5 px-8 rounded-[14px] transition-all duration-300 ease-in-out transform hover:scale-[1.03] shadow-lg hover:shadow-2xl flex items-center justify-between"
                 >
                   <div className="flex items-center space-x-4">
                     <div className="bg-white/20 p-3 rounded-xl">
                       <MessageCircle className="text-white" size={26} />
                     </div>
                     <div className="text-left">
-                      <div className="text-lg font-bold">WhatsApp Nachricht senden</div>
+                      <div className="text-lg font-bold">WhatsApp Anfrage senden</div>
+                      <div className="text-sm text-white/80 mt-0.5">
+                        Der Chat öffnet sich mit einer fertigen Angebotsanfrage.
+                      </div>
                     </div>
                   </div>
                   <ExternalLink className="text-white opacity-50 group-hover:opacity-100 transition-opacity" size={20} />

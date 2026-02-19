@@ -114,16 +114,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
               <div className="space-y-4 max-w-[520px]">
                 <button
                   onClick={handleWhatsAppClick}
-                  className="group w-full bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] flex items-center justify-between"
+                  className="whatsapp-premium-button group w-full bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out flex items-center justify-between relative overflow-hidden"
                   style={{
                     padding: '20px 24px',
                     boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
                   }}
                 >
                   <div className="flex items-center space-x-4">

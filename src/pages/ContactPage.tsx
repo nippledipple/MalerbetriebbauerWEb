@@ -230,7 +230,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 >
                   <div className="flex items-center space-x-4">
                     <div className="bg-blue-50 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="text-blue-600" size={26} strokeWidth={2} />
+                      <img
+                        src="/9DE6C232-1DE7-4339-87DF-CEA4B3CCF391.PNG"
+                        alt="E-Mail"
+                        className="w-8 h-8 object-contain"
+                      />
                     </div>
                     <div className="text-left">
                       <div className="text-lg font-bold leading-tight text-gray-900">E-Mail schreiben</div>

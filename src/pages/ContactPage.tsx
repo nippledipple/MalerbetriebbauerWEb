@@ -133,7 +133,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     <div className="text-left">
                       <div className="text-lg font-bold leading-tight">WhatsApp Anfrage senden</div>
                       <div className="text-sm text-white/85 mt-1 font-normal">
-                        Schnellste Antwort - Chat öffnet sich sofort
+                        Antwort innerhalb von 24 Stunden
                       </div>
                     </div>
                   </div>
@@ -165,7 +165,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     <div className="text-left">
                       <div className="text-lg font-bold leading-tight text-gray-900">E-Mail schreiben</div>
                       <div className="text-sm text-gray-500 mt-1 font-normal">
-                        Antwort innerhalb von 24 Stunden
+                        Antwort so schnell wie möglich
                       </div>
                     </div>
                   </div>

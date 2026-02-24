@@ -114,36 +114,73 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-            <div>
-              <h2 className="text-2xl font-bold text-[#585858] mb-6">
-                Kontaktinformationen
-              </h2>
+          <div className="max-w-4xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-[#585858] mb-4 text-center">
+              Wie möchten Sie uns erreichen?
+            </h2>
+            <p className="text-gray-600 mb-10 text-center text-lg">
+              Wählen Sie einfach Ihren bevorzugten Kontaktweg
+            </p>
 
-              <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+              <button
+                onClick={handleWhatsAppClick}
+                className="group bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl p-8 flex flex-col items-center text-center"
+                style={{
+                  boxShadow: '0 10px 25px rgba(37, 211, 102, 0.3)',
+                }}
+              >
+                <div className="bg-white/15 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                  <MessageCircle className="w-10 h-10" />
+                </div>
+                <div className="text-xl font-bold mb-2">WhatsApp</div>
+                <div className="text-sm text-white/90">
+                  Sofortiger Chat
+                </div>
+              </button>
+
+              <a
+                href="tel:+491718852058"
+                className="group bg-gradient-to-br from-[#ffd900] to-[#ca9922] text-[#585858] rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl p-8 flex flex-col items-center text-center"
+                style={{
+                  boxShadow: '0 10px 25px rgba(255, 217, 0, 0.3)',
+                }}
+              >
+                <div className="bg-white/20 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                  <Phone className="w-10 h-10" />
+                </div>
+                <div className="text-xl font-bold mb-2">Anrufen</div>
+                <div className="text-sm opacity-90">
+                  +49 171 8852058
+                </div>
+              </a>
+
+              <button
+                onClick={handleEmailClick}
+                className="group bg-white hover:bg-gray-50 text-gray-800 rounded-2xl border-2 border-gray-200 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl p-8 flex flex-col items-center text-center"
+              >
+                <div className="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                  <Mail className="w-10 h-10 text-blue-600" />
+                </div>
+                <div className="text-xl font-bold mb-2">E-Mail</div>
+                <div className="text-sm text-gray-600">
+                  Schriftliche Anfrage
+                </div>
+              </button>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <h3 className="text-xl font-bold text-[#585858] mb-6 text-center">Weitere Informationen</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start space-x-4">
                   <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                     <MapPin className="text-[#585858]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Adresse</h3>
+                    <h4 className="font-bold text-[#585858] mb-1">Adresse</h4>
                     <p className="text-gray-600">Neue Str. 19</p>
                     <p className="text-gray-600">95173 Schönwald</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="text-[#585858]" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Telefon</h3>
-                    <a
-                      href="tel:+491718852058"
-                      className="text-gray-600 hover:text-[#ffd900] transition-colors"
-                    >
-                      +49 171 8852058
-                    </a>
                   </div>
                 </div>
 
@@ -152,10 +189,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     <Mail className="text-[#585858]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">E-Mail</h3>
+                    <h4 className="font-bold text-[#585858] mb-1">E-Mail Adresse</h4>
                     <a
                       href="mailto:malerbauer1468@gmx.de"
-                      className="text-gray-600 hover:text-[#ffd900] transition-colors"
+                      className="text-gray-600 hover:text-[#ffd900] transition-colors break-all"
                     >
                       malerbauer1468@gmx.de
                     </a>
@@ -167,88 +204,22 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     <Clock className="text-[#585858]" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#585858] mb-1">Öffnungszeiten</h3>
-                    <p className="text-gray-600">Montag - Freitag: 08:00 - 17:00 Uhr</p>
-                    <p className="text-gray-600">Samstag: Nach Vereinbarung</p>
+                    <h4 className="font-bold text-[#585858] mb-1">Öffnungszeiten</h4>
+                    <p className="text-gray-600">Mo - Fr: 08:00 - 17:00 Uhr</p>
+                    <p className="text-gray-600">Sa: Nach Vereinbarung</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div>
-              <h2 className="text-2xl font-bold text-[#585858] mb-4">
-                Kontakt aufnehmen
-              </h2>
-              <p className="text-gray-600 mb-8">
-                Du möchtest ein Angebot anfragen oder hast Fragen? Wähle einfach den passenden Kontaktweg:
-              </p>
-
-              <div className="space-y-4 max-w-[520px]">
-                <button
-                  onClick={handleWhatsAppClick}
-                  className="whatsapp-premium-button group w-full bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out flex items-center justify-between relative overflow-hidden"
-                  style={{
-                    padding: '20px 24px',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/15 backdrop-blur-sm w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
-                      <img
-                        src="/whatsapp.png"
-                        alt="WhatsApp"
-                        className="w-8 h-8 object-contain"
-                      />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-lg font-bold leading-tight">WhatsApp Anfrage senden</div>
-                      <div className="text-sm text-white/85 mt-1 font-normal">
-                        Antwort innerhalb von 24 Stunden
-                      </div>
-                    </div>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-[#ffd900] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <ExternalLink className="text-[#585858]" size={24} />
                   </div>
-                  <div className="flex-shrink-0 ml-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white opacity-90">
-                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                  <div>
+                    <h4 className="font-bold text-[#585858] mb-1">Schnellkontakt</h4>
+                    <p className="text-gray-600">WhatsApp: Sofortige Antwort</p>
+                    <p className="text-gray-600">Telefon: Während Bürozeiten</p>
                   </div>
-                </button>
-
-                <button
-                  onClick={handleEmailClick}
-                  className="group w-full bg-white hover:bg-gray-50 text-gray-800 rounded-2xl border border-gray-200 transition-all duration-300 ease-in-out transform hover:scale-[1.01] flex items-center justify-between"
-                  style={{
-                    padding: '20px 24px',
-                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.08)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.12)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
-                  }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-blue-50 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
-                      <img
-                        src="/9DE6C232-1DE7-4339-87DF-CEA4B3CCF391.PNG"
-                        alt="E-Mail"
-                        className="w-16 h-16 object-contain"
-                      />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-lg font-bold leading-tight text-gray-900">E-Mail schreiben</div>
-                      <div className="text-sm text-gray-500 mt-1 font-normal">
-                        Antwort so schnell wie möglich
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 ml-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-400 group-hover:text-gray-600 transition-colors">
-                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </button>
+                </div>
               </div>
             </div>
           </div>

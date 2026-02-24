@@ -4,7 +4,7 @@ import { CookieProvider, useCookies } from './contexts/CookieContext';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
-import ChatBot from './components/ChatBot';
+import { HubSpotIntegration } from './components/HubSpotIntegration';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -83,7 +83,7 @@ const AppContent: React.FC = () => {
       <main className="flex-grow">{renderPage()}</main>
       <Footer onNavigate={handleNavigate} onOpenCookieSettings={openSettings} />
       <CookieBanner />
-      <ChatBot />
+      <HubSpotIntegration />
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, Mail, Settings, MessageCircle, AlertCircle } from 'lucide-react';
+import { BarChart3, Mail, Settings, MessageCircle, AlertCircle, Megaphone } from 'lucide-react';
 import { supabase, type ContactRequest } from '../lib/supabase';
 import StatisticsPanel from '../components/admin/StatisticsPanel';
 import InboxPanel from '../components/admin/InboxPanel';
 import SettingsPanel from '../components/admin/SettingsPanel';
 import KIPostfachPanel from '../components/admin/KIPostfachPanel';
 import ErrorLogsPanel from '../components/admin/ErrorLogsPanel';
+import { HubSpotPanel } from '../components/admin/HubSpotPanel';
 
 const AdminDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'statistics' | 'inbox' | 'ki-inbox' | 'errors' | 'settings'>(
+  const [activeTab, setActiveTab] = useState<'statistics' | 'inbox' | 'ki-inbox' | 'errors' | 'hubspot' | 'settings'>(
     'statistics'
   );
   const [contactRequests, setContactRequests] = useState<ContactRequest[]>([]);
@@ -39,6 +40,7 @@ const AdminDashboard: React.FC = () => {
     { id: 'inbox' as const, label: 'Postfach', icon: Mail },
     { id: 'ki-inbox' as const, label: 'KI-Postfach', icon: MessageCircle },
     { id: 'errors' as const, label: 'Fehlerprotokoll', icon: AlertCircle },
+    { id: 'hubspot' as const, label: 'HubSpot', icon: Megaphone },
     { id: 'settings' as const, label: 'Einstellungen', icon: Settings },
   ];
 
@@ -86,6 +88,7 @@ const AdminDashboard: React.FC = () => {
               )}
               {activeTab === 'ki-inbox' && <KIPostfachPanel />}
               {activeTab === 'errors' && <ErrorLogsPanel />}
+              {activeTab === 'hubspot' && <HubSpotPanel />}
               {activeTab === 'settings' && <SettingsPanel />}
             </div>
           </div>

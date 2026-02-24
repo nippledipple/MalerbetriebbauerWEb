@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AuthProvider } from './contexts/AuthContext';
 import { CookieProvider, useCookies } from './contexts/CookieContext';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -9,12 +8,10 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
-import AdminDashboard from './pages/AdminDashboard';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
 import PartnersPage from './pages/PartnersPage';
 import { useTracking } from './hooks/useTracking';
-import { useAuth } from './contexts/AuthContext';
 import { localDb } from './lib/localDb';
 
 type PageType =
@@ -22,7 +19,6 @@ type PageType =
   | 'about'
   | 'services'
   | 'contact'
-  | 'admin'
   | 'impressum'
   | 'datenschutz'
   | 'partners';
@@ -30,7 +26,6 @@ type PageType =
 const AppContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const { openSettings } = useCookies();
-  const { user } = useAuth();
 
   useEffect(() => {
     localDb.init().then(async () => {
@@ -46,10 +41,6 @@ const AppContent: React.FC = () => {
   useTracking(currentPage);
 
   const handleNavigate = (page: string) => {
-    if (page === 'admin' && !user) {
-      alert('Bitte melden Sie sich an, um auf das Admin-Dashboard zuzugreifen.');
-      return;
-    }
     setCurrentPage(page as PageType);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -64,8 +55,6 @@ const AppContent: React.FC = () => {
         return <ServicesPage />;
       case 'contact':
         return <ContactPage onNavigate={handleNavigate} />;
-      case 'admin':
-        return user ? <AdminDashboard /> : <HomePage onNavigate={handleNavigate} />;
       case 'impressum':
         return <ImpressumPage />;
       case 'datenschutz':
@@ -91,9 +80,7 @@ const AppContent: React.FC = () => {
 function App() {
   return (
     <CookieProvider>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
+      <AppContent />
     </CookieProvider>
   );
 }

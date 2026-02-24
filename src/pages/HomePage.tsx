@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Paintbrush, Shield, Users, Award, Phone } from 'lucide-react';
-import { EditableText } from '../components/EditableText';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import PartnerSlider from '../components/PartnerSlider';
 import { supabase } from '../lib/supabase';
@@ -79,20 +78,12 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="max-w-3xl">
-              <EditableText
-                page="home"
-                section="hero_title"
-                defaultContent="Wir bringen Farbe in Ihr Leben"
-                as="h1"
-                className="text-4xl md:text-6xl font-bold mb-6 text-[#585858]"
-              />
-              <EditableText
-                page="home"
-                section="hero_subtitle"
-                defaultContent="Ihr Malerfachbetrieb in Schönwald"
-                as="p"
-                className="text-xl md:text-2xl mb-8 text-[#585858]/90"
-              />
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#585858]">
+                Wir bringen Farbe in Ihr Leben
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-[#585858]/90">
+                Ihr Malerfachbetrieb in Schönwald
+              </p>
               <button
                 onClick={scrollToContact}
                 className="bg-[#585858] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#404040] transition-colors inline-flex items-center space-x-2"
@@ -118,35 +109,19 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <EditableText
-              page="home"
-              section="welcome_title"
-              defaultContent="Willkommen bei Malerbetrieb Bauer"
-              as="h2"
-              className="text-3xl md:text-4xl font-bold text-[#585858] mb-6 text-center"
-            />
+            <h2 className="text-3xl md:text-4xl font-bold text-[#585858] mb-6 text-center">
+              Willkommen bei Malerbetrieb Bauer
+            </h2>
             <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
-              <EditableText
-                page="home"
-                section="welcome_paragraph1"
-                defaultContent="Seit 2004 ist der Malerbetrieb Bauer Ihr kompetenter Partner für hochwertige Malerarbeiten in Schönwald und Umgebung. Was als kleiner Handwerksbetrieb begann, hat sich zu einem etablierten Betrieb mit einem Team erfahrener Fachkräfte entwickelt."
-                as="p"
-                multiline
-              />
-              <EditableText
-                page="home"
-                section="welcome_paragraph2"
-                defaultContent="Unser Erfolgsrezept liegt in der perfekten Kombination aus traditionellem Handwerk und modernen Techniken. Wir legen größten Wert auf Qualität, Zuverlässigkeit und persönlichen Service – von der ersten Beratung bis zur finalen Abnahme."
-                as="p"
-                multiline
-              />
-              <EditableText
-                page="home"
-                section="welcome_paragraph3"
-                defaultContent="Ob Neubau, Renovierung oder Sanierung – wir realisieren Ihre Vorstellungen mit Präzision und Leidenschaft. Vertrauen Sie auf unsere Expertise und lassen Sie sich von unseren Referenzen überzeugen."
-                as="p"
-                multiline
-              />
+              <p>
+                Seit 2004 ist der Malerbetrieb Bauer Ihr kompetenter Partner für hochwertige Malerarbeiten in Schönwald und Umgebung. Was als kleiner Handwerksbetrieb begann, hat sich zu einem etablierten Betrieb mit einem Team erfahrener Fachkräfte entwickelt.
+              </p>
+              <p>
+                Unser Erfolgsrezept liegt in der perfekten Kombination aus traditionellem Handwerk und modernen Techniken. Wir legen größten Wert auf Qualität, Zuverlässigkeit und persönlichen Service – von der ersten Beratung bis zur finalen Abnahme.
+              </p>
+              <p>
+                Ob Neubau, Renovierung oder Sanierung – wir realisieren Ihre Vorstellungen mit Präzision und Leidenschaft. Vertrauen Sie auf unsere Expertise und lassen Sie sich von unseren Referenzen überzeugen.
+              </p>
             </div>
           </div>
         </div>
@@ -154,13 +129,9 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <EditableText
-            page="home"
-            section="services_title"
-            defaultContent="Unsere Leistungen"
-            as="h2"
-            className="text-3xl md:text-4xl font-bold text-[#585858] mb-12 text-center"
-          />
+          <h2 className="text-3xl md:text-4xl font-bold text-[#585858] mb-12 text-center">
+            Unsere Leistungen
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div

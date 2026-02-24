@@ -1,6 +1,5 @@
 import React from 'react';
 import { Users, Award, Target, Heart } from 'lucide-react';
-import { EditableText } from '../components/EditableText';
 
 const AboutPage: React.FC = () => {
   const team = [
@@ -22,23 +21,14 @@ const AboutPage: React.FC = () => {
     <div className="py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <EditableText
-            page="about"
-            section="title"
-            defaultContent="Über uns"
-            as="h1"
-            className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center"
-          />
+          <h1 className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center">
+            Über uns
+          </h1>
 
           <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858]">
-            <EditableText
-              page="about"
-              section="tagline"
-              defaultContent="Tradition trifft Innovation – Seit 2004 Ihr verlässlicher Partner für Malerarbeiten in Schönwald"
-              as="p"
-              className="text-xl md:text-2xl font-semibold text-center"
-              multiline
-            />
+            <p className="text-xl md:text-2xl font-semibold text-center">
+              Tradition trifft Innovation – Seit 2004 Ihr verlässlicher Partner für Malerarbeiten in Schönwald
+            </p>
           </div>
 
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6 mb-16">
@@ -46,32 +36,20 @@ const AboutPage: React.FC = () => {
               <Award className="text-[#ffd900]" size={36} />
               <span>Unsere Geschichte</span>
             </h2>
-            <EditableText
-              page="about"
-              section="history_paragraph1"
-              defaultContent="Im Jahr 2004 übernahm Ralf Wolfermann den Malerbetrieb Bauer von Hans Bauer mit einer klaren Vision: Hochwertige Handwerkskunst mit persönlichem Service zu verbinden. Was mit einem kleinen Team begann, hat sich über die Jahre zu einem anerkannten Betrieb entwickelt, der für Qualität und Zuverlässigkeit steht."
-              as="p"
-              multiline
-            />
-            <EditableText
-              page="about"
-              section="history_paragraph2"
-              defaultContent="Heute sind wir stolz darauf, mit einem erfahrenen Team aus qualifizierten Malern und Gesellen arbeiten zu dürfen. Jedes Mitglied unseres Teams bringt seine individuellen Stärken ein und trägt dazu bei, dass wir auch die anspruchsvollsten Projekte erfolgreich realisieren können."
-              as="p"
-              multiline
-            />
+            <p>
+              Im Jahr 2004 übernahm Ralf Wolfermann den Malerbetrieb Bauer von Hans Bauer mit einer klaren Vision: Hochwertige Handwerkskunst mit persönlichem Service zu verbinden. Was mit einem kleinen Team begann, hat sich über die Jahre zu einem anerkannten Betrieb entwickelt, der für Qualität und Zuverlässigkeit steht.
+            </p>
+            <p>
+              Heute sind wir stolz darauf, mit einem erfahrenen Team aus qualifizierten Malern und Gesellen arbeiten zu dürfen. Jedes Mitglied unseres Teams bringt seine individuellen Stärken ein und trägt dazu bei, dass wir auch die anspruchsvollsten Projekte erfolgreich realisieren können.
+            </p>
 
             <h2 className="text-3xl font-bold text-[#585858] flex items-center space-x-3 mt-12">
               <Target className="text-[#ffd900]" size={36} />
               <span>Unsere Mission</span>
             </h2>
-            <EditableText
-              page="about"
-              section="mission_paragraph"
-              defaultContent="Unser Ziel ist es, jedem Kunden nicht nur einen perfekt gestrichenen Raum oder eine renovierte Fassade zu übergeben, sondern ein Gesamterlebnis zu bieten, das von Anfang bis Ende überzeugt. Wir nehmen uns Zeit für Ihre Wünsche, beraten Sie kompetent und setzen Ihre Vorstellungen mit höchster Präzision um."
-              as="p"
-              multiline
-            />
+            <p>
+              Unser Ziel ist es, jedem Kunden nicht nur einen perfekt gestrichenen Raum oder eine renovierte Fassade zu übergeben, sondern ein Gesamterlebnis zu bieten, das von Anfang bis Ende überzeugt. Wir nehmen uns Zeit für Ihre Wünsche, beraten Sie kompetent und setzen Ihre Vorstellungen mit höchster Präzision um.
+            </p>
 
             <h2 className="text-3xl font-bold text-[#585858] flex items-center space-x-3 mt-12">
               <Heart className="text-[#ffd900]" size={36} />

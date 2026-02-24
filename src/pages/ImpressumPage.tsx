@@ -1,5 +1,4 @@
 import React from 'react';
-import { EditableText } from '../components/EditableText';
 
 const ImpressumPage: React.FC = () => {
   return (
@@ -29,13 +28,7 @@ const ImpressumPage: React.FC = () => {
             <section>
               <h2 className="text-2xl font-bold text-[#585858] mb-4">Kontakt</h2>
               <p className="text-gray-700">
-                Telefon:{' '}
-                <EditableText
-                  page="impressum"
-                  section="phone"
-                  defaultContent="+49 171 8852058"
-                  as="span"
-                />
+                Telefon: <span>+49 171 8852058</span>
                 <br />
                 E-Mail:{' '}
                 <a

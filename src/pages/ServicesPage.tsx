@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paintbrush, Home, Building, Brush, Droplet, Shield } from 'lucide-react';
-import { EditableText } from '../components/EditableText';
 
 const ServicesPage: React.FC = () => {
   const services = [
@@ -82,23 +81,14 @@ const ServicesPage: React.FC = () => {
     <div className="py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <EditableText
-            page="services"
-            section="title"
-            defaultContent="Unsere Leistungen"
-            as="h1"
-            className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center"
-          />
+          <h1 className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center">
+            Unsere Leistungen
+          </h1>
 
           <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858]">
-            <EditableText
-              page="services"
-              section="tagline"
-              defaultContent="Von der ersten Beratung bis zur finalen Abnahme – Wir bieten Ihnen das komplette Leistungsspektrum eines modernen Malerbetriebs"
-              as="p"
-              className="text-xl md:text-2xl font-semibold text-center"
-              multiline
-            />
+            <p className="text-xl md:text-2xl font-semibold text-center">
+              Von der ersten Beratung bis zur finalen Abnahme – Wir bieten Ihnen das komplette Leistungsspektrum eines modernen Malerbetriebs
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">

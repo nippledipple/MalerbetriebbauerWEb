@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, ExternalLink, MessageCircle } from 'lucide-react';
-import { EditableText } from '../components/EditableText';
 
 interface ContactPageProps {
   onNavigate: (page: string) => void;
@@ -91,13 +90,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       <div className="py-16">
         <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <EditableText
-            page="contact"
-            section="title"
-            defaultContent="Kontakt"
-            as="h1"
-            className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center"
-          />
+          <h1 className="text-4xl md:text-5xl font-bold text-[#585858] mb-8 text-center">
+            Kontakt
+          </h1>
 
           <div className="bg-gradient-to-br from-[#ffd900] to-[#ca9922] rounded-lg p-8 mb-12 text-[#585858] relative overflow-hidden">
             <img
@@ -105,13 +100,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
               alt="Malerbetrieb Bauer Logo"
               className="absolute right-8 top-1/2 -translate-y-1/2 h-32 w-auto object-contain opacity-30"
             />
-            <EditableText
-              page="contact"
-              section="tagline"
-              defaultContent="Wir freuen uns auf Ihre Anfrage!"
-              as="p"
-              className="text-xl md:text-2xl font-semibold text-center relative z-10"
-            />
+            <p className="text-xl md:text-2xl font-semibold text-center relative z-10">
+              Wir freuen uns auf Ihre Anfrage!
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto mb-12">

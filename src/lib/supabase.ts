@@ -1,25 +1,45 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+let supabase: SupabaseClient | null = null;
+
+const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+if (isSupabaseConfigured) {
+  supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    }
+  });
+} else {
+  console.warn('Supabase environment variables not configured. Supabase features will be disabled.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  }
-});
+export { supabase, isSupabaseConfigured };
 
 export const getAdminClient = () => {
-  const isAdmin = localStorage.getItem('auth_session');
-  if (isAdmin) {
-    return supabase;
-  }
   return supabase;
+};
+
+const isMissingTableError = (error: unknown): boolean => {
+  if (!error || typeof error !== 'object') return false;
+  const message = String((error as { message?: string }).message || '');
+  const details = String((error as { details?: string }).details || '');
+  const combined = `${message} ${details}`.toLowerCase();
+  return combined.includes('does not exist') || combined.includes('undefined table') || combined.includes('relation');
+};
+
+export const logSupabaseError = (context: string, error: unknown): void => {
+  const message = error instanceof Error ? error.message : String(error);
+  const extra = typeof error === 'object' && error !== null ? error : undefined;
+  if (isMissingTableError(error)) {
+    console.warn(`Supabase table missing or not initialized (${context}):`, message, extra);
+    return;
+  }
+  console.error(`Supabase error (${context}):`, message, extra);
 };
 
 export interface ContactRequest {

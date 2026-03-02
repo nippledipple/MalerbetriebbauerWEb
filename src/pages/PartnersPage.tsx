@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, logSupabaseError } from '../lib/supabase';
 import { ExternalLink } from 'lucide-react';
 
 interface Partner {
@@ -18,6 +18,10 @@ const PartnersPage: React.FC = () => {
   }, []);
 
   const loadPartners = async () => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     try {
       const { data, error } = await supabase
         .from('partners')
@@ -26,10 +30,15 @@ const PartnersPage: React.FC = () => {
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        logSupabaseError('partners select', error);
+        setPartners([]);
+        return;
+      }
       setPartners(data || []);
     } catch (error) {
       console.error('Error loading partners:', error);
+      setPartners([]);
     } finally {
       setLoading(false);
     }

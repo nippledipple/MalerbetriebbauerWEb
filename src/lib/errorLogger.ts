@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, logSupabaseError } from './supabase';
 
 interface ErrorLogData {
   errorType: string;
@@ -9,11 +9,12 @@ interface ErrorLogData {
 }
 
 export async function logError(data: ErrorLogData): Promise<void> {
+  if (!supabase) return;
   try {
     const userAgent = navigator.userAgent;
     const pageUrl = data.pageUrl || window.location.href;
 
-    await supabase.from('error_logs').insert({
+    const { error } = await supabase.from('error_logs').insert({
       error_type: data.errorType,
       error_message: data.errorMessage,
       error_stack: data.errorStack,
@@ -21,6 +22,9 @@ export async function logError(data: ErrorLogData): Promise<void> {
       user_agent: userAgent,
       page_url: pageUrl,
     });
+    if (error) {
+      logSupabaseError('error_logs insert', error);
+    }
   } catch (err) {
     console.error('Failed to log error to database:', err);
   }

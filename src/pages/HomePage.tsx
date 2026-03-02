@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Paintbrush, Shield, Users, Award, Phone } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import PartnerSlider from '../components/PartnerSlider';
-import { supabase } from '../lib/supabase';
+import { supabase, logSupabaseError } from '../lib/supabase';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -32,10 +32,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        logSupabaseError('partners select', error);
+        setPartners([]);
+        return;
+      }
       setPartners(data || []);
     } catch (error) {
       console.error('Error loading partners:', error);
+      setPartners([]);
     }
   };
 

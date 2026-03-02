@@ -27,16 +27,42 @@ const defaultConsent: CookieConsent = {
 
 const CookieContext = createContext<CookieContextType | undefined>(undefined);
 
+const safeLocalStorage = {
+  getItem(key: string) {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn('localStorage getItem failed:', error);
+      return null;
+    }
+  },
+  setItem(key: string, value: string) {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (error) {
+      console.warn('localStorage setItem failed:', error);
+      return false;
+    }
+  },
+};
+
 export const CookieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [consent, setConsent] = useState<CookieConsent>(defaultConsent);
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
-    const savedConsent = localStorage.getItem('cookieConsent');
+    const savedConsent = safeLocalStorage.getItem('cookieConsent');
     if (savedConsent) {
-      setConsent(JSON.parse(savedConsent));
-      setShowBanner(false);
+      try {
+        setConsent(JSON.parse(savedConsent));
+        setShowBanner(false);
+      } catch (error) {
+        console.warn('Invalid cookie consent data, resetting.', error);
+        setConsent(defaultConsent);
+        setShowBanner(true);
+      }
     } else {
       setShowBanner(true);
     }
@@ -44,7 +70,7 @@ export const CookieProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const saveConsent = (newConsent: CookieConsent) => {
     setConsent(newConsent);
-    localStorage.setItem('cookieConsent', JSON.stringify(newConsent));
+    safeLocalStorage.setItem('cookieConsent', JSON.stringify(newConsent));
     setShowBanner(false);
     setShowSettings(false);
   };

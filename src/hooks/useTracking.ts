@@ -6,8 +6,9 @@ export const useTracking = (pageName: string) => {
   const { consent } = useCookies();
 
   useEffect(() => {
-    if (!consent.statistics) return;
+    if (!consent.statistics || !supabase) return;
 
+    const client = supabase;
     const trackPageView = async () => {
       try {
         let sessionId = localStorage.getItem('sessionId');
@@ -16,7 +17,7 @@ export const useTracking = (pageName: string) => {
           localStorage.setItem('sessionId', sessionId);
         }
 
-        await supabase
+        await client
           .from('visitor_stats')
           .insert([{
             page_url: `/${pageName}`,

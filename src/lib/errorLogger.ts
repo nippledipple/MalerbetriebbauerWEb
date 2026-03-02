@@ -9,6 +9,7 @@ interface ErrorLogData {
 }
 
 export async function logError(data: ErrorLogData): Promise<void> {
+  if (!supabase) return;
   try {
     const userAgent = navigator.userAgent;
     const pageUrl = data.pageUrl || window.location.href;

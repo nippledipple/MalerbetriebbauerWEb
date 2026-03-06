@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div
@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
               alt="Malerbetrieb Bauer Logo"
               className="h-16 w-auto object-contain"
             />
-            <span className="text-2xl font-bold text-[#585858]">
+            <span className="text-2xl font-bold text-white">
               Malerbetrieb Bauer
             </span>
           </div>
@@ -39,8 +39,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`font-medium transition-colors hover:text-[#ffd900] ${
-                  currentPage === item.id ? 'text-[#ffd900]' : 'text-[#585858]'
+                className={`font-medium transition-colors hover:text-blue-400 ${
+                  currentPage === item.id ? 'text-blue-500' : 'text-gray-300'
                 }`}
               >
                 {item.label}
@@ -49,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
           </div>
 
           <button
-            className="md:hidden text-[#585858]"
+            className="md:hidden text-gray-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -66,8 +66,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
                     onNavigate(item.id);
                     setIsMenuOpen(false);
                   }}
-                  className={`text-left font-medium transition-colors hover:text-[#ffd900] ${
-                    currentPage === item.id ? 'text-[#ffd900]' : 'text-[#585858]'
+                  className={`text-left font-medium transition-colors hover:text-blue-400 ${
+                    currentPage === item.id ? 'text-blue-500' : 'text-gray-300'
                   }`}
                 >
                   {item.label}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useCookies } from '../contexts/CookieContext';
+import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 export const useTracking = (pageName: string) => {
   const { consent } = useCookies();
@@ -16,7 +17,7 @@ export const useTracking = (pageName: string) => {
           localStorage.setItem('sessionId', sessionId);
         }
 
-        await supabase
+        const { error } = await supabase
           .from('visitor_stats')
           .insert([{
             page_url: `/${pageName}`,
@@ -24,8 +25,12 @@ export const useTracking = (pageName: string) => {
             user_agent: navigator.userAgent,
             session_id: sessionId,
           }]);
-      } catch (error) {
-        console.error('Error in tracking:', error);
+
+        if (error) {
+          handleSupabaseError(error);
+        }
+      } catch (error: any) {
+        handleSupabaseError(error);
       }
     };
 

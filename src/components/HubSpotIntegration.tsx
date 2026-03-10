@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface HubSpotSettings {
   portal_id: string;
@@ -21,12 +22,15 @@ export const HubSpotIntegration: React.FC = () => {
         .select('portal_id, tracking_enabled, chat_enabled')
         .maybeSingle();
 
-      if (error) throw error;
+      if (error) {
+        handleSupabaseError(error);
+        return;
+      }
       if (data && data.portal_id) {
         setSettings(data);
       }
-    } catch (error) {
-      console.error('Error loading HubSpot settings:', error);
+    } catch (error: any) {
+      handleSupabaseError(error);
     }
   };
 

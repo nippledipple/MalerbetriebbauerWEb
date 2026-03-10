@@ -64,22 +64,6 @@ const RedirectOverlay: React.FC<RedirectOverlayProps> = ({ type, onClose }) => {
 const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [showRedirect, setShowRedirect] = useState<'whatsapp' | 'email' | null>(null);
 
-  const handleWhatsAppClick = () => {
-    const whatsappUrl = 'https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen';
-
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      window.location.href = whatsappUrl;
-    } else {
-      setShowRedirect('whatsapp');
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        setShowRedirect(null);
-      }, 1300);
-    }
-  };
-
   const handleEmailClick = () => {
     setShowRedirect('email');
     setTimeout(() => {
@@ -123,8 +107,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-              <button
-                onClick={handleWhatsAppClick}
+              <a
+                href="https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl p-8 flex flex-col items-center text-center"
                 style={{
                   boxShadow: '0 10px 25px rgba(37, 211, 102, 0.3)',
@@ -137,7 +123,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div className="text-sm text-white/90">
                   Sofortiger Chat
                 </div>
-              </button>
+              </a>
 
               <a
                 href="tel:+491718852058"

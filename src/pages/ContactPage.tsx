@@ -46,7 +46,8 @@ const RedirectOverlay: React.FC<RedirectOverlayProps> = ({ type, onClose }) => {
           className="redirect-fallback-button"
           onClick={() => {
             if (isWhatsApp) {
-              window.open('https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
+              const whatsappUrl = 'https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen';
+              window.location.href = whatsappUrl;
             } else {
               window.location.href = 'mailto:malerbauer.mer@gmail.com?subject=Anfrage%20Malerbetrieb%20Bauer';
             }
@@ -64,11 +65,19 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [showRedirect, setShowRedirect] = useState<'whatsapp' | 'email' | null>(null);
 
   const handleWhatsAppClick = () => {
-    setShowRedirect('whatsapp');
-    setTimeout(() => {
-      window.open('https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen', '_blank', 'noopener,noreferrer');
-      setShowRedirect(null);
-    }, 1300);
+    const whatsappUrl = 'https://wa.me/491718852058?text=Guten%20Tag%20Herr%20Wolfermann,%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen';
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = whatsappUrl;
+    } else {
+      setShowRedirect('whatsapp');
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        setShowRedirect(null);
+      }, 1300);
+    }
   };
 
   const handleEmailClick = () => {

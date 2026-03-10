@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { ExternalLink } from 'lucide-react';
+import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface Partner {
   id: string;
@@ -26,10 +27,15 @@ const PartnersPage: React.FC = () => {
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: true });
 
-      if (error) throw error;
-      setPartners(data || []);
-    } catch (error) {
-      console.error('Error loading partners:', error);
+      if (error) {
+        handleSupabaseError(error);
+        setPartners([]);
+      } else {
+        setPartners(data || []);
+      }
+    } catch (error: any) {
+      handleSupabaseError(error);
+      setPartners([]);
     } finally {
       setLoading(false);
     }

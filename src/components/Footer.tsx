@@ -7,6 +7,11 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+    e.preventDefault();
+    onNavigate(page);
+  };
+
   return (
     <footer className="bg-[#585858] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -52,18 +57,20 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => 
               Rechtliches
             </h3>
             <div className="space-y-2">
-              <button
-                onClick={() => onNavigate('impressum')}
+              <a
+                href="/impressum"
+                onClick={(e) => handleClick(e, 'impressum')}
                 className="block hover:text-[#ffd900] transition-colors"
               >
                 Impressum
-              </button>
-              <button
-                onClick={() => onNavigate('datenschutz')}
+              </a>
+              <a
+                href="/datenschutz"
+                onClick={(e) => handleClick(e, 'datenschutz')}
                 className="block hover:text-[#ffd900] transition-colors"
               >
                 Datenschutz
-              </button>
+              </a>
               <button
                 onClick={onOpenCookieSettings}
                 className="block hover:text-[#ffd900] transition-colors"

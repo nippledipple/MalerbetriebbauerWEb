@@ -15,7 +15,7 @@ const PARTNERS: Partner[] = [
     name: 'Farben Volz',
     logo_url: '/farben-volz-logo-quer-rgb.png',
     website_url: 'https://www.farben-volz.de',
-    description: 'Ihr Partner für hochwertige Malerarbeiten und professionelle Farbgestaltung.'
+    description: 'Farben Volz ist ein zuverlässiger Partner des Malerbetrieb Bauer und unterstützt uns bei der Umsetzung hochwertiger Projekte mit professionellen Farben, Lacken und Materialien. Durch die langjährige Erfahrung und die hohe Produktqualität von Farben Volz können wir unseren Kunden erstklassige Ergebnisse und langlebige Beschichtungen bieten. Die enge Zusammenarbeit ermöglicht uns eine optimale Materialauswahl und eine fachkundige Beratung für jedes Projekt.'
   }
 ];
 

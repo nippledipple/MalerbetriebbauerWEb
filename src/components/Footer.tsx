@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Star } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -70,6 +70,15 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => 
               >
                 Cookie-Einstellungen
               </button>
+              <a
+                href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 mt-4 bg-[#ffd900] text-[#585858] px-4 py-2 rounded-lg font-semibold hover:bg-[#e6c200] transition-colors"
+              >
+                <Star size={20} />
+                <span>Google Bewertung schreiben</span>
+              </a>
             </div>
           </div>
         </div>

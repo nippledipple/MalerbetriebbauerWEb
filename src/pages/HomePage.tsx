@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paintbrush, Shield, Users, Award, Phone } from 'lucide-react';
+import { Paintbrush, Shield, Users, Award, Phone, Star } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import PartnerSlider from '../components/PartnerSlider';
 import { supabase } from '../lib/supabase';
@@ -209,13 +209,24 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <p className="text-xl mb-8 text-gray-300">
             Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch
           </p>
-          <button
-            onClick={scrollToContact}
-            className="bg-[#ffd900] text-[#585858] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#e6c200] transition-colors inline-flex items-center space-x-2"
-          >
-            <Phone size={24} />
-            <span>Kontakt aufnehmen</span>
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={scrollToContact}
+              className="bg-[#ffd900] text-[#585858] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#e6c200] transition-colors inline-flex items-center space-x-2"
+            >
+              <Phone size={24} />
+              <span>Kontakt aufnehmen</span>
+            </button>
+            <a
+              href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-[#585858] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
+            >
+              <Star size={24} className="text-[#ffd900]" fill="#ffd900" />
+              <span>Google Bewertung schreiben</span>
+            </a>
+          </div>
         </div>
       </section>
     </div>

@@ -71,7 +71,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookieSettings }) => 
                 Cookie-Einstellungen
               </button>
               <a
-                href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
+                href="https://www.google.com/search?sca_esv=f7a79e76d6e111ca&rlz=1C5AJCO_enDE1191DE1191&sxsrf=ANbL-n4IwgQC_6b8ybG3wQ_o73j06cr4-w:1773294933428&q=Malerbetrieb+Bauer.&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZaNhZ0OEy8Gq-gBvRW1JbWFWwPmffVOeXWWwD-SDLZVevDRlytAs_RHUuJhTNlJ7O-j6PA%3D&uds=ALYpb_nUOii3xq83QISjOGo-FImB6GoZ55OEVAlPHx5Wo1ILNvAXQNHdSMQY1zKrNa7Kb0EzcTDlBwyE-b1mThxoNsfovnKT2joBTn16O3NgSDzUuVYLxxo&sa=X&ved=2ahUKEwjt7dq01pmTAxVHS_EDHQbGFusQ3PALegQIGhAE&biw=1470&bih=835&dpr=2#lrd=0x4799093c13a36a61:0xdac57fb2f52ab7db,3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 mt-4 bg-[#ffd900] text-[#585858] px-4 py-2 rounded-lg font-semibold hover:bg-[#e6c200] transition-colors"

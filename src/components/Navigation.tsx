@@ -21,15 +21,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div
-            className="flex items-center space-x-3 cursor-pointer"
+            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer min-w-0 flex-1 mr-4 md:mr-0 md:flex-none"
             onClick={() => onNavigate('home')}
           >
             <img
               src="/e48083a5-33c2-4e82-9bfb-10683f40cf8d-removebg-preview.png"
               alt="Malerbetrieb Bauer Logo"
-              className="h-16 w-auto object-contain"
+              className="h-12 md:h-16 w-auto object-contain"
             />
-            <span className="text-2xl font-bold text-[#585858]">
+            <span className="text-lg sm:text-xl md:text-2xl font-bold text-[#585858] truncate">
               Malerbetrieb Bauer
             </span>
           </div>

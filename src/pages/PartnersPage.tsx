@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import React, { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface Partner {
   id: string;
@@ -11,37 +9,53 @@ interface Partner {
   description?: string;
 }
 
+const PARTNERS: Partner[] = [
+  {
+    id: '1',
+    name: 'Brillux',
+    logo_url: 'https://www.brillux.de/fileadmin/user_upload/brillux_logo.svg',
+    website_url: 'https://www.brillux.de',
+    description: 'Führender Vollsortimenter und Direktanbieter für Farben, Lacke und innovative Fassadensysteme.'
+  },
+  {
+    id: '2',
+    name: 'Caparol',
+    logo_url: 'https://www.caparol.de/fileadmin/caparol/images/logo/caparol-logo.svg',
+    website_url: 'https://www.caparol.de',
+    description: 'Premium Farben und Lacke für höchste Ansprüche im Innen- und Außenbereich.'
+  },
+  {
+    id: '3',
+    name: 'Sto',
+    logo_url: 'https://www.sto.de/content/dam/internet/de/de/images/logo/sto-logo.svg',
+    website_url: 'https://www.sto.de',
+    description: 'Innovative Dämmsysteme und Beschichtungen für nachhaltige Gebäudelösungen.'
+  },
+  {
+    id: '4',
+    name: 'Osmo',
+    logo_url: 'https://www.osmo.de/fileadmin/user_upload/osmo_logo.svg',
+    website_url: 'https://www.osmo.de',
+    description: 'Natürliche Holzanstriche und Öle für innen und außen.'
+  },
+  {
+    id: '5',
+    name: 'Renovo',
+    logo_url: 'https://www.renovo.de/fileadmin/user_upload/renovo_logo.png',
+    website_url: 'https://www.renovo.de',
+    description: 'Hochwertige Farben und Lacke für Renovierung und Sanierung.'
+  },
+  {
+    id: '6',
+    name: 'Schöner Wohnen',
+    logo_url: 'https://www.schoener-wohnen-farbe.com/fileadmin/user_upload/sw_logo.svg',
+    website_url: 'https://www.schoener-wohnen-farbe.com',
+    description: 'Trendfarben und Design-Kollektionen für moderne Raumgestaltung.'
+  }
+];
+
 const PartnersPage: React.FC = () => {
-  const [partners, setPartners] = useState<Partner[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
-
-  useEffect(() => {
-    loadPartners();
-  }, []);
-
-  const loadPartners = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('partners')
-        .select('*')
-        .eq('is_active', true)
-        .order('display_order', { ascending: true })
-        .order('created_at', { ascending: true });
-
-      if (error) {
-        handleSupabaseError(error);
-        setPartners([]);
-      } else {
-        setPartners(data || []);
-      }
-    } catch (error: any) {
-      handleSupabaseError(error);
-      setPartners([]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <>
@@ -103,41 +117,30 @@ const PartnersPage: React.FC = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-4">
-          {loading ? (
-            <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#ffd900]"></div>
-              <p className="mt-4 text-gray-600">Lade Partner...</p>
-            </div>
-          ) : partners.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">Derzeit sind keine Partner verfügbar.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {partners.map((partner) => (
-                <div
-                  key={partner.id}
-                  onClick={() => setSelectedPartner(partner)}
-                  className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-8 flex flex-col items-center justify-center cursor-pointer"
-                >
-                  <div className="w-full h-40 flex items-center justify-center mb-6 p-4">
-                    <img
-                      src={partner.logo_url}
-                      alt={partner.name}
-                      className="max-w-full max-h-full object-contain"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#585858] mb-4 text-center">
-                    {partner.name}
-                  </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {PARTNERS.map((partner) => (
+              <div
+                key={partner.id}
+                onClick={() => setSelectedPartner(partner)}
+                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-8 flex flex-col items-center justify-center cursor-pointer"
+              >
+                <div className="w-full h-40 flex items-center justify-center mb-6 p-4">
+                  <img
+                    src={partner.logo_url}
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
                 </div>
-              ))}
-            </div>
-          )}
+                <h3 className="text-xl font-bold text-[#585858] mb-4 text-center">
+                  {partner.name}
+                </h3>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

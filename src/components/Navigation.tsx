@@ -13,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'Über uns' },
     { id: 'services', label: 'Leistungen' },
+    { id: 'partners', label: 'Partner' },
     { id: 'contact', label: 'Kontakt' },
   ];
 

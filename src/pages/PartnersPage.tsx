@@ -12,45 +12,10 @@ interface Partner {
 const PARTNERS: Partner[] = [
   {
     id: '1',
-    name: 'Brillux',
-    logo_url: 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg',
-    website_url: 'https://www.brillux.de',
-    description: 'Führender Hersteller von Farben, Lacken und Fassadensystemen.'
-  },
-  {
-    id: '2',
-    name: 'Caparol',
-    logo_url: 'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg',
-    website_url: 'https://www.caparol.de',
-    description: 'Premium Farben und Lacke für Innen- und Außenbereich.'
-  },
-  {
-    id: '3',
-    name: 'Alpina',
-    logo_url: 'https://images.pexels.com/photos/1669799/pexels-photo-1669799.jpeg',
-    website_url: 'https://www.alpina-farben.de',
-    description: 'Hochwertige Wandfarben und Lacke für jeden Anspruch.'
-  },
-  {
-    id: '4',
-    name: 'Sto',
-    logo_url: 'https://images.pexels.com/photos/1669776/pexels-photo-1669776.jpeg',
-    website_url: 'https://www.sto.de',
-    description: 'Innovative Fassaden- und Dämmsysteme.'
-  },
-  {
-    id: '5',
-    name: 'Schöner Wohnen',
-    logo_url: 'https://images.pexels.com/photos/1669772/pexels-photo-1669772.jpeg',
-    website_url: 'https://www.schoener-wohnen-farbe.com',
-    description: 'Trendfarben und Design-Kollektionen.'
-  },
-  {
-    id: '6',
-    name: 'Dulux',
-    logo_url: 'https://images.pexels.com/photos/1669791/pexels-photo-1669791.jpeg',
-    website_url: 'https://www.dulux.de',
-    description: 'Farbinspirationen für Ihr Zuhause.'
+    name: 'Farben Volz',
+    logo_url: '/farben-volz-logo-quer-rgb.png',
+    website_url: 'https://www.farben-volz.de',
+    description: 'Ihr Partner für hochwertige Malerarbeiten und professionelle Farbgestaltung.'
   }
 ];
 

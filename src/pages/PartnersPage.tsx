@@ -72,11 +72,15 @@ const PartnersPage: React.FC = () => {
                   key={partner.id}
                   className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-8 flex flex-col items-center justify-center"
                 >
-                  <div className="w-full h-32 flex items-center justify-center mb-4">
+                  <div className="w-full h-40 flex items-center justify-center mb-6 p-4">
                     <img
                       src={partner.logo_url}
                       alt={partner.name}
                       className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-[#585858] mb-4 text-center">

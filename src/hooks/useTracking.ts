@@ -10,6 +10,7 @@ export const useTracking = (pageName: string) => {
     if (!consent.statistics) return;
 
     const trackPageView = async () => {
+      if (!supabase) return;
       try {
         let sessionId = localStorage.getItem('sessionId');
         if (!sessionId) {

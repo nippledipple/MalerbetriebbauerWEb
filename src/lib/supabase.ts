@@ -1,23 +1,27 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+let supabaseInstance: SupabaseClient | null = null;
+
+if (supabaseUrl && supabaseAnonKey) {
+  supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+    global: {
+      headers: {
+        'x-client-info': 'supabase-js-web',
+      },
+    },
+  });
+} else {
+  console.warn('Supabase environment variables not configured. Database features are disabled.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  },
-  global: {
-    headers: {
-      'x-client-info': 'supabase-js-web',
-    },
-  },
-});
+export const supabase = supabaseInstance;
 
 export const getAdminClient = () => {
   const isAdmin = localStorage.getItem('auth_session');

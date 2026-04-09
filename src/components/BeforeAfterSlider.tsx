@@ -64,7 +64,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[500px] overflow-hidden rounded-lg shadow-xl cursor-ew-resize select-none"
+      className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-lg shadow-xl cursor-ew-resize select-none touch-none"
       onMouseDown={handleMouseDown}
       onTouchStart={handleMouseDown}
     >

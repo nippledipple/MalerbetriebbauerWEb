@@ -28,7 +28,7 @@ const DatabaseNotification: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-20 left-4 z-50 max-w-md transition-all duration-300 ease-out ${
+      className={`fixed top-20 left-4 right-4 sm:right-auto z-50 max-w-md transition-all duration-300 ease-out ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
       }`}
     >

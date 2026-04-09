@@ -106,7 +106,7 @@ const ServicesPage: React.FC = () => {
                     <p className="text-gray-600">{service.description}</p>
                   </div>
                 </div>
-                <div className="ml-20">
+                <div className="ml-0 md:ml-20">
                   <ul className="space-y-2">
                     {service.details.map((detail, idx) => (
                       <li key={idx} className="flex items-start space-x-2">

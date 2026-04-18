@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { localDb } from '../lib/localDb';
 import { useCookies } from '../contexts/CookieContext';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 export const useTracking = (pageName: string) => {
   const { consent } = useCookies();
@@ -17,20 +16,14 @@ export const useTracking = (pageName: string) => {
           localStorage.setItem('sessionId', sessionId);
         }
 
-        const { error } = await supabase
-          .from('visitor_stats')
-          .insert([{
-            page_url: `/${pageName}`,
-            referrer: document.referrer || null,
-            user_agent: navigator.userAgent,
-            session_id: sessionId,
-          }]);
-
-        if (error) {
-          handleSupabaseError(error);
-        }
-      } catch (error: any) {
-        handleSupabaseError(error);
+        await localDb.addVisitorStat({
+          page_url: `/${pageName}`,
+          referrer: document.referrer || undefined,
+          user_agent: navigator.userAgent,
+          session_id: sessionId,
+        });
+      } catch (error) {
+        console.error('Tracking could not be saved locally:', error);
       }
     };
 

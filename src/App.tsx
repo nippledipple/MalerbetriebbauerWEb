@@ -4,7 +4,6 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
 import DatabaseNotification from './components/DatabaseNotification';
-import { HubSpotIntegration } from './components/HubSpotIntegration';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -74,7 +73,6 @@ const AppContent: React.FC = () => {
       <Footer onNavigate={handleNavigate} onOpenCookieSettings={openSettings} />
       <CookieBanner />
       <DatabaseNotification />
-      <HubSpotIntegration />
     </div>
   );
 };

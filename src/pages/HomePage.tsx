@@ -24,6 +24,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   }, []);
 
   const loadPartners = async () => {
+    if (!supabase) {
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('partners')

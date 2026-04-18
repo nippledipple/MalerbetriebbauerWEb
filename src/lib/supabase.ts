@@ -1,29 +1,31 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+let supabaseClient: SupabaseClient | null = null;
+
+if (isSupabaseConfigured) {
+  supabaseClient = createClient(supabaseUrl!, supabaseAnonKey!, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+    global: {
+      headers: {
+        'x-client-info': 'supabase-js-web',
+      },
+    },
+  });
+} else {
+  console.warn('Supabase is not configured. Running with local-only fallback.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  },
-  global: {
-    headers: {
-      'x-client-info': 'supabase-js-web',
-    },
-  },
-});
+export const supabase = supabaseClient;
 
 export const getAdminClient = () => {
-  const isAdmin = localStorage.getItem('auth_session');
-  if (isAdmin) {
-    return supabase;
-  }
   return supabase;
 };
 

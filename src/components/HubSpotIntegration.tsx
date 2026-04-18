@@ -16,6 +16,10 @@ export const HubSpotIntegration: React.FC = () => {
   }, []);
 
   const loadSettings = async () => {
+    if (!supabase) {
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('hubspot_settings')

@@ -47,16 +47,8 @@ const DatenschutzPage: React.FC = () => {
               <h2 className="text-2xl font-bold text-[#585858] mb-4">2. Hosting und Content Delivery Networks (CDN)</h2>
 
               <p className="text-gray-700">
-                Wir hosten die Inhalte unserer Website bei Supabase. Anbieter ist die Supabase, Inc.,
-                USA. Details entnehmen Sie der Datenschutzerklärung von Supabase:{' '}
-                <a
-                  href="https://supabase.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#ffd900] hover:underline"
-                >
-                  https://supabase.com/privacy
-                </a>
+                Wir hosten die Inhalte unserer Website bei unserem Hosting-Anbieter. Die Datenverarbeitung
+                erfolgt im Rahmen eines Auftragsverarbeitungsvertrags gemäß Art. 28 DSGVO.
               </p>
             </section>
 

@@ -1,31 +1,28 @@
-import { createClient } from '@supabase/supabase-js';
+const disabledError = new Error('Supabase is disabled in this project.');
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  },
-  global: {
-    headers: {
-      'x-client-info': 'supabase-js-web',
-    },
-  },
-});
-
-export const getAdminClient = () => {
-  const isAdmin = localStorage.getItem('auth_session');
-  if (isAdmin) {
-    return supabase;
-  }
-  return supabase;
+const createDisabledSupabaseClient = () => {
+  return {
+    from: () => ({
+      select: async () => ({ data: null, error: disabledError }),
+      insert: async () => ({ data: null, error: disabledError }),
+      update: async () => ({ data: null, error: disabledError }),
+      delete: async () => ({ data: null, error: disabledError }),
+      eq: () => ({
+        select: async () => ({ data: null, error: disabledError }),
+      }),
+      maybeSingle: async () => ({ data: null, error: disabledError }),
+      order: () => ({
+        order: () => ({
+          select: async () => ({ data: null, error: disabledError }),
+        }),
+      }),
+    }),
+  };
 };
+
+export const supabase = createDisabledSupabaseClient();
+
+export const getAdminClient = () => supabase;
 
 export interface ContactRequest {
   id: string;

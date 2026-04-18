@@ -1,47 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Paintbrush, Shield, Users, Award, Phone, Star } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
-import PartnerSlider from '../components/PartnerSlider';
-import { supabase } from '../lib/supabase';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
 }
 
-interface Partner {
-  id: string;
-  name: string;
-  logo_url: string;
-  website_url?: string;
-}
-
 const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const [partners, setPartners] = useState<Partner[]>([]);
-
-  useEffect(() => {
-    loadPartners();
-  }, []);
-
-  const loadPartners = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('partners')
-        .select('*')
-        .eq('is_active', true)
-        .order('display_order', { ascending: true })
-        .order('created_at', { ascending: true });
-
-      if (error) {
-        handleSupabaseError(error);
-        return;
-      }
-      setPartners(data || []);
-    } catch (error: any) {
-      handleSupabaseError(error);
-    }
-  };
-
   const scrollToContact = () => {
     onNavigate('contact');
   };
@@ -198,8 +163,6 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </section>
-
-      {partners.length > 0 && <PartnerSlider partners={partners} />}
 
       <section className="py-16 bg-[#585858] text-white">
         <div className="container mx-auto px-4 text-center">

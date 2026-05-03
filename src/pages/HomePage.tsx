@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Paintbrush, Shield, Users, Award, Phone, Star } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import PartnerSlider from '../components/PartnerSlider';
-import { supabase } from '../lib/supabase';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -16,31 +14,10 @@ interface Partner {
   website_url?: string;
 }
 
+const PARTNERS: Partner[] = [];
+
 const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const [partners, setPartners] = useState<Partner[]>([]);
-
-  useEffect(() => {
-    loadPartners();
-  }, []);
-
-  const loadPartners = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('partners')
-        .select('*')
-        .eq('is_active', true)
-        .order('display_order', { ascending: true })
-        .order('created_at', { ascending: true });
-
-      if (error) {
-        handleSupabaseError(error);
-        return;
-      }
-      setPartners(data || []);
-    } catch (error: any) {
-      handleSupabaseError(error);
-    }
-  };
+  const [partners] = useState<Partner[]>(PARTNERS);
 
   const scrollToContact = () => {
     onNavigate('contact');

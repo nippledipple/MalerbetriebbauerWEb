@@ -1,6 +1,3 @@
-import { supabase } from './supabase';
-import { handleSupabaseError } from './supabaseErrorHandler';
-
 interface ErrorLogData {
   errorType: string;
   errorMessage: string;
@@ -10,23 +7,15 @@ interface ErrorLogData {
 }
 
 export async function logError(data: ErrorLogData): Promise<void> {
-  try {
-    const userAgent = navigator.userAgent;
-    const pageUrl = data.pageUrl || window.location.href;
+  const errorLog = {
+    errorType: data.errorType,
+    errorMessage: data.errorMessage,
+    errorStack: data.errorStack,
+    formData: data.formData,
+    userAgent: navigator.userAgent,
+    pageUrl: data.pageUrl || window.location.href,
+    timestamp: new Date().toISOString(),
+  };
 
-    const { error } = await supabase.from('error_logs').insert({
-      error_type: data.errorType,
-      error_message: data.errorMessage,
-      error_stack: data.errorStack,
-      form_data: data.formData,
-      user_agent: userAgent,
-      page_url: pageUrl,
-    });
-
-    if (error) {
-      handleSupabaseError(error);
-    }
-  } catch (err: any) {
-    handleSupabaseError(err);
-  }
+  console.error('Error logged:', errorLog);
 }

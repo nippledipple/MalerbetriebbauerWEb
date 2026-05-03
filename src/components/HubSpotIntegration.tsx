@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 interface HubSpotSettings {
   portal_id: string;
@@ -8,31 +6,16 @@ interface HubSpotSettings {
   chat_enabled: boolean;
 }
 
+const HUBSPOT_SETTINGS: HubSpotSettings | null = null;
+
 export const HubSpotIntegration: React.FC = () => {
-  const [settings, setSettings] = useState<HubSpotSettings | null>(null);
+  const [settings, setSettings] = useState<HubSpotSettings | null>(HUBSPOT_SETTINGS);
 
   useEffect(() => {
-    loadSettings();
-  }, []);
-
-  const loadSettings = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('hubspot_settings')
-        .select('portal_id, tracking_enabled, chat_enabled')
-        .maybeSingle();
-
-      if (error) {
-        handleSupabaseError(error);
-        return;
-      }
-      if (data && data.portal_id) {
-        setSettings(data);
-      }
-    } catch (error: any) {
-      handleSupabaseError(error);
+    if (HUBSPOT_SETTINGS) {
+      setSettings(HUBSPOT_SETTINGS);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!settings || !settings.portal_id) return;

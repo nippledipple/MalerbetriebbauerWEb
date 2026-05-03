@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import { supabase } from '../lib/supabase';
 import { useCookies } from '../contexts/CookieContext';
-import { handleSupabaseError } from '../lib/supabaseErrorHandler';
 
 export const useTracking = (pageName: string) => {
   const { consent } = useCookies();
@@ -9,31 +7,20 @@ export const useTracking = (pageName: string) => {
   useEffect(() => {
     if (!consent.statistics) return;
 
-    const trackPageView = async () => {
-      try {
-        let sessionId = localStorage.getItem('sessionId');
-        if (!sessionId) {
-          sessionId = crypto.randomUUID();
-          localStorage.setItem('sessionId', sessionId);
-        }
+    let sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      localStorage.setItem('sessionId', sessionId);
+    }
 
-        const { error } = await supabase
-          .from('visitor_stats')
-          .insert([{
-            page_url: `/${pageName}`,
-            referrer: document.referrer || null,
-            user_agent: navigator.userAgent,
-            session_id: sessionId,
-          }]);
-
-        if (error) {
-          handleSupabaseError(error);
-        }
-      } catch (error: any) {
-        handleSupabaseError(error);
-      }
+    const trackData = {
+      page_url: `/${pageName}`,
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent,
+      session_id: sessionId,
+      timestamp: new Date().toISOString(),
     };
 
-    trackPageView();
+    console.log('Page tracked:', trackData);
   }, [pageName, consent.statistics]);
 };

@@ -67,7 +67,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const handleEmailClick = () => {
     setShowRedirect('email');
     setTimeout(() => {
-      window.location.href = 'mailto:malerbauer.mer@gmail.com?subject=Anfrage%20Malerbetrieb%20Bauer';
+      window.location.href = 'mailto:malerbauer1468@gmx.de?subject=Anfrage%20Malerbetrieb%20Bauer';
       setShowRedirect(null);
     }, 1300);
   };

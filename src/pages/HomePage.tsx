@@ -145,14 +145,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </h2>
           <div className="max-w-4xl mx-auto mb-6">
             <BeforeAfterSlider
-              beforeImage="/WhatsApp Image 2025-11-09 at 21.11.09 (1).jpeg"
-              afterImage="/WhatsApp Image 2025-11-09 at 21.11.23 (1).jpeg"
-              beforeAlt="Dach vor der Reinigung"
-              afterAlt="Dach nach der Reinigung"
+              beforeImage="/WhatsApp Image 2025-11-09 at 21.11.23 (1).jpeg"
+              afterImage="/WhatsApp Image 2025-11-09 at 21.11.09 (1).jpeg"
+              beforeAlt="Fassade vor der Sanierung"
+              afterAlt="Fassade nach der Sanierung"
             />
           </div>
           <p className="text-center text-gray-600 max-w-2xl mx-auto">
-            Professionelle Dachreinigung - Schieben Sie den Regler, um den Unterschied zu sehen
+            Professionelle Fassadensanierung - Schieben Sie den Regler, um den Unterschied zu sehen
           </p>
         </div>
       </section>

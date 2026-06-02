@@ -145,8 +145,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </h2>
           <div className="max-w-4xl mx-auto mb-6">
             <BeforeAfterSlider
-              beforeImage="/WhatsApp Image 2025-11-09 at 21.11.23 (1).jpeg"
-              afterImage="/WhatsApp Image 2025-11-09 at 21.11.09 (1).jpeg"
+              beforeImage="/8351E1DD-A723-4F87-A87B-C9996E043AE5 copy.JPG"
+              afterImage="/1DE3893C-8794-462C-8413-F5363DA2C9A0 copy.JPG"
               beforeAlt="Fassade vor der Sanierung"
               afterAlt="Fassade nach der Sanierung"
             />

@@ -24,8 +24,21 @@ type PageType =
   | 'datenschutz'
   | 'partners';
 
+const validPages: PageType[] = ['home', 'about', 'services', 'contact', 'impressum', 'datenschutz', 'partners'];
+
+function getPageFromPath(pathname: string): PageType {
+  const path = pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+  if (!path || path === 'home') return 'home';
+  if (validPages.includes(path as PageType)) return path as PageType;
+  return 'home';
+}
+
+function getPathFromPage(page: PageType): string {
+  return page === 'home' ? '/' : `/${page}`;
+}
+
 const AppContent: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [currentPage, setCurrentPage] = useState<PageType>(() => getPageFromPath(window.location.pathname));
   const { openSettings } = useCookies();
 
   useEffect(() => {
@@ -39,10 +52,20 @@ const AppContent: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPage(getPageFromPath(window.location.pathname));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   useTracking(currentPage);
 
   const handleNavigate = (page: string) => {
-    setCurrentPage(page as PageType);
+    const pageType = page as PageType;
+    setCurrentPage(pageType);
+    window.history.pushState(null, '', getPathFromPage(pageType));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
